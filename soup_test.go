@@ -43,3 +43,14 @@ func TestFind(t *testing.T) {
 	}
 
 }
+
+func TestFindAll(t *testing.T) {
+	s := `<ul><li><a href="foo">Foo</a><li><a class="goo" href="/bar/baz">BarBaz</a></ul>`
+	doc, _ := html.Parse(strings.NewReader(s))
+
+	links := FindAll(doc, "li a")
+
+	if len(links) != 2 {
+		t.Errorf("There should be 2 link nodes")
+	}
+}

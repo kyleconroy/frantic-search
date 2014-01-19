@@ -22,6 +22,11 @@ func Find(n *html.Node, selector string) (*html.Node, bool) {
 	return query(n, strings.Split(selector, " "))
 }
 
+func FindAll(n *html.Node, selector string) []*html.Node {
+	return queryall(n, strings.Split(selector, " "))
+}
+
+
 func Attr(n *html.Node, key string) string {
 	for _, a := range n.Attr {
 		if a.Key == key {
@@ -29,6 +34,43 @@ func Attr(n *html.Node, key string) string {
 		}
 	}
 	return ""
+}
+
+func queryall(n *html.Node, selectors []string) []*html.Node {
+	nodes := []*html.Node{}
+
+	if len(selectors) == 0 {
+		return nodes
+	}
+
+	match := false
+	selector := selectors[0]
+
+	if n.Type == html.ElementNode {
+		if strings.HasPrefix(selector, ".") {
+			match = ("." + Attr(n, "class")) == selector
+		} else if strings.HasPrefix(selector, "#") {
+			match = ("#" + Attr(n, "id")) == selector
+		} else {
+			match = (n.Data == selector)
+		}
+	}
+
+	if match {
+		if len(selectors) > 1 {
+			selectors = selectors[1:]
+		} else {
+			nodes = append(nodes, n)
+		}
+	}
+
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		for _, node := range queryall(c, selectors) {
+			nodes = append(nodes, node)
+		}
+	}
+
+	return nodes
 }
 
 func query(n *html.Node, selectors []string) (*html.Node, bool) {

@@ -2,5 +2,8 @@
   "name": "Elephant Resurgence",
   "converted_cost": 2,
   "rarity": "rare",
-  "number": 113
+  "rules_text": "Each player puts a green Elephant creature token onto the battlefield. Those creatures have \"This creature's power and toughness are each equal to the number of creature cards in its controller's graveyard.\"",
+  "number": "113",
+  "set": "Prophecy",
+  "artist": "DiTerlizzi"
 }

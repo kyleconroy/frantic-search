@@ -15,11 +15,11 @@ const (
 type Card struct {
 	Artist        string   `json:"artist"`
 	Name          string   `json:"name"`
-	Number        int      `json:"number"`
+	Number        string   `json:"number"`
 	Rarity        string   `json:"rarity"`
 	Types         []string `json:"type"`
 	Subtypes      []string `json:"type"`
-	Expansion     string   `json:"set"`
+	Set           string   `json:"set"`
 	MultiverseId  int      `json:"multiverse"`
 	ConvertedCost int      `json:"converted_cost"`
 	ManaCost      string   `json:"mana_cost"`
@@ -40,8 +40,8 @@ func cardName(n *html.Node) string {
 	return ""
 }
 
-func extractName(n *html.Node) string {
-	if div, found := Find(n, prefix+"nameRow .value"); found {
+func extractString(n *html.Node, pattern string) string {
+	if div, found := Find(n, pattern); found {
 		return strings.TrimSpace(Flatten(div))
 	} else {
 		return ""
@@ -56,7 +56,7 @@ func extractRarity(n *html.Node) string {
 	}
 }
 
-func extractInteger(n *html.Node, pattern string) int {
+func extractInt(n *html.Node, pattern string) int {
 	div, found := Find(n, pattern)
 
 	if !found {
@@ -81,10 +81,14 @@ func ParseCard(page io.Reader) (Card, error) {
 		return card, err
 	}
 
-	card.Name = extractName(doc)
 	card.Rarity = extractRarity(doc)
-	card.ConvertedCost = extractInteger(doc, prefix+"cmcRow .value")
-	card.Number = extractInteger(doc, prefix+"numberRow .value")
+	card.Name = extractString(doc, prefix+"nameRow .value")
+	card.ConvertedCost = extractInt(doc, prefix+"cmcRow .value")
+	card.Number = extractString(doc, prefix+"numberRow .value")
+	card.RulesText = extractString(doc, prefix+"textRow .value")
+	card.Artist = extractString(doc, prefix+"artistRow .value")
+	card.Set = extractString(doc, prefix+"setRow .value")
+	card.FlavorText = extractString(doc, prefix+"FlavorText")
 
 	return card, nil
 }
