@@ -1,0 +1,11 @@
+{
+  "mana_cost": "5U",
+  "converted_cost": 6,
+  "types": ["creature"],
+  "subtypes": ["elemental"],
+  "power": "4",
+  "toughness": "4",
+  "rarity": "common",
+  "name": "Æthersnipe",
+  "card_number": "17"
+}
