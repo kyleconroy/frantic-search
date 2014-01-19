@@ -11,6 +11,7 @@ import (
 
 var cards = []int{
 	21382,
+	189211,
 }
 
 func TestCreatureCard(t *testing.T) {
@@ -42,7 +43,7 @@ func TestCreatureCard(t *testing.T) {
 		card, err := ParseCard(file)
 
 		if !reflect.DeepEqual(card, expected) {
-			t.Errorf("%5d: Cards did not match: %v != %v", id, card, expected)
+			t.Errorf("%5d: Cards did not match: %+v != %+v", id, card, expected)
 		}
 	}
 }

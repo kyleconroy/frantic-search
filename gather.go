@@ -74,6 +74,32 @@ func extractManaCost(n *html.Node) string {
 	return cost
 }
 
+func extractPT(n *html.Node) (string, string) {
+	div, found := Find(n, prefix+"ptRow .value")
+
+	if !found {
+		return "", ""
+	}
+		
+	values := strings.Split(strings.TrimSpace(Flatten(div)), "/")
+
+	if len(values) != 2 {
+		return "", ""
+	}
+
+	return strings.TrimSpace(values[0]), strings.TrimSpace(values[1])
+}
+
+func SplitTrimSpace(source, pattern string) []string {
+	result := []string{}
+
+	for _, val := range strings.Split(strings.TrimSpace(source), pattern) {
+		result  = append(result, strings.TrimSpace(val))
+	}
+
+	return result
+}
+
 func extractTypes(n *html.Node) ([]string, []string) {
 	div, found := Find(n, prefix+"typeRow .value")
 
@@ -87,10 +113,10 @@ func extractTypes(n *html.Node) ([]string, []string) {
 	var subtypes []string
 
 	if len(ts) == 2 {
-		types = strings.Split(ts[0], " ")
-		subtypes = strings.Split(ts[1], " ")
+		types = SplitTrimSpace(ts[0], " ")
+		subtypes = SplitTrimSpace(ts[1], " ")
 	} else {
-		types = strings.Split(ts[0], " ")
+		types = SplitTrimSpace(ts[0], " ")
 		subtypes = []string{}
 	}
 
@@ -141,6 +167,7 @@ func ParseCard(page io.Reader) (Card, error) {
 	card.Set = extractString(doc, prefix+"setRow .value")
 	card.FlavorText = extractString(doc, prefix+"FlavorText")
 	card.Types, card.Subtypes = extractTypes(doc)
+	card.Power, card.Toughness = extractPT(doc)
 
 	return card, nil
 }
