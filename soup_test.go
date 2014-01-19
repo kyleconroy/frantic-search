@@ -41,11 +41,10 @@ func TestFind(t *testing.T) {
 	if !found || goo.Data != "a" || Flatten(goo) != "BarBaz" {
 		t.Errorf("Couldn't find a with class goo")
 	}
-
 }
 
 func TestFindAll(t *testing.T) {
-	s := `<ul><li><a href="foo">Foo</a><li><a class="goo" href="/bar/baz">BarBaz</a></ul>`
+	s := `<ul id="foo"><li class="value"><a href="foo">Foo</a><a class="goo" href="/bar/baz">BarBaz</a></li></ul>`
 	doc, _ := html.Parse(strings.NewReader(s))
 
 	links := FindAll(doc, "li a")
@@ -53,4 +52,11 @@ func TestFindAll(t *testing.T) {
 	if len(links) != 2 {
 		t.Errorf("There should be 2 link nodes")
 	}
+
+	links = FindAll(doc, "#foo .value a")
+
+	if len(links) != 2 {
+		t.Errorf("There should be 2 link nodes")
+	}
+
 }

@@ -26,7 +26,6 @@ func FindAll(n *html.Node, selector string) []*html.Node {
 	return queryall(n, strings.Split(selector, " "))
 }
 
-
 func Attr(n *html.Node, key string) string {
 	for _, a := range n.Attr {
 		if a.Key == key {
