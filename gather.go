@@ -4,12 +4,12 @@ import (
 	"code.google.com/p/go.net/html"
 	"fmt"
 	"io"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 const (
-	prefix = "ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_"
+	prefix = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_"
 )
 
 type Card struct {
@@ -40,70 +40,37 @@ func cardName(n *html.Node) string {
 	return ""
 }
 
-func hasId(n *html.Node, id string) bool {
-	if n.Type == html.ElementNode {
-		for _, a := range n.Attr {
-			if a.Key == "id" {
-				return a.Val == id
-			}
-		}
-	}
-	return false
-}
-
-func find(n *html.Node, class string) *html.Node {
-	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		if c.Type == html.ElementNode {
-			for _, a := range c.Attr {
-				if a.Key == "class" && a.Val == class {
-					return c
-				}
-			}
-		}
-
-	}
-	return nil
-}
-
-func text(n *html.Node) string {
-	if n.FirstChild == nil {
-		return ""
-	}
-
-	if n.FirstChild.Type == html.TextNode {
-		return n.FirstChild.Data
-	}
-
-	return ""
-}
-
 func extractName(n *html.Node) string {
-	div := find(n, "value")
-
-	if div == nil {
+	if div, found := Find(n, prefix+"nameRow .value"); found {
+		return strings.TrimSpace(Flatten(div))
+	} else {
 		return ""
 	}
-
-	return strings.TrimSpace(text(div))
 }
 
-func extractConvertedCost(n *html.Node) int {
-	div := find(n, "value")
+func extractRarity(n *html.Node) string {
+	if span, found := Find(n, prefix+"rarityRow .value span"); found {
+		return Attr(span, "class")
+	} else {
+		return ""
+	}
+}
 
-	if div == nil {
+func extractInteger(n *html.Node, pattern string) int {
+	div, found := Find(n, pattern)
+
+	if !found {
 		return 0
 	}
 
-	result := strings.TrimSpace(text(div))
-	cost, err := strconv.Atoi(result)
+	number, err := strconv.Atoi(strings.TrimSpace(Flatten(div)))
 
 	if err != nil {
 		return 0
 	}
 
-	return cost
+	return number
 }
-
 
 func ParseCard(page io.Reader) (Card, error) {
 	doc, err := html.Parse(page)
@@ -114,22 +81,10 @@ func ParseCard(page io.Reader) (Card, error) {
 		return card, err
 	}
 
-	var searchTheCity func(n *html.Node)
-
-	searchTheCity = func(n *html.Node) {
-		if hasId(n, prefix+"nameRow") {
-			card.Name = extractName(n)
-		}
-		if hasId(n, prefix+"cmcRow") {
-			card.ConvertedCost = extractConvertedCost(n)
-		}
-
-		for c := n.FirstChild; c != nil; c = c.NextSibling {
-			searchTheCity(c)
-		}
-	}
-
-	searchTheCity(doc)
+	card.Name = extractName(doc)
+	card.Rarity = extractRarity(doc)
+	card.ConvertedCost = extractInteger(doc, prefix+"cmcRow .value")
+	card.Number = extractInteger(doc, prefix+"numberRow .value")
 
 	return card, nil
 }
