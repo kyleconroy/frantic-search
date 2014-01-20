@@ -1,12 +1,12 @@
 {
-  "mana_cost": "{UP}",
+  "mana_cost": "{U/P}",
   "id": "065ed0f656bb22ee75f7bb3d6b18e38d",
   "name": "Gitaxian Probe",
   "converted_cost": 1,
   "types": ["sorcery"],
   "subtypes": [],
   "rules_text": [
-    "({UP} can be paid with either {U} or 2 life.)",
+    "({U/P} can be paid with either {U} or 2 life.)",
     "Look at target player's hand.",
     "Draw a card."
   ],

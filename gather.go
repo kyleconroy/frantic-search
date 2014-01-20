@@ -105,16 +105,18 @@ func manaSymbol(alt string) string {
 	switch alt {
 	case "0", "1", "2", "3", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15":
 		return "{" + alt + "}"
+	case "Phyrexian":
+		return "{P}"
 	case "Phyrexian Green":
-		return "{UG}"
+		return "{G/P}"
 	case "Phyrexian Red":
-		return "{UR}"
+		return "{R/P}"
 	case "Phyrexian Blue":
-		return "{UP}"
+		return "{U/P}"
 	case "Phyrexian Black":
-		return "{BP}"
+		return "{B/P}"
 	case "Phyrexian White":
-		return "{WP}"
+		return "{W/P}"
 	case "White or Blue":
 		return "{W/U}"
 	case "White or Black":
