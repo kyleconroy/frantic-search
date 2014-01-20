@@ -2,23 +2,25 @@ package main
 
 import (
 	"code.google.com/p/go.net/html"
-	"net/url"
 	"crypto/md5"
-	"net/http"
 	"encoding/json"
 	"flag"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
+	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 )
 
 const (
-	prefix = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_"
-	gathererUrl = "http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=%d"
-	searchUrl = "http://gatherer.wizards.com/Pages/Search/Default.aspx?output=compact&action=advanced&special=true&cmc=|>%%3d[0]|<%%3d[0]&page=%d"
+	prefixSingle = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_"
+	prefixLeft   = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl07_"
+	prefixRight  = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl08_"
+	gathererUrl  = "http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=%d"
+	searchUrl    = "http://gatherer.wizards.com/Pages/Search/Default.aspx?output=compact&action=advanced&special=true&cmc=|>%%3d[0]|<%%3d[0]&page=%d"
 )
 
 type Deckbox struct {
@@ -35,7 +37,6 @@ func (d Deckbox) IdSet() map[string]bool {
 	return set
 }
 
-
 func (d Deckbox) MultiverseSet() map[int]bool {
 	set := map[int]bool{}
 
@@ -48,7 +49,7 @@ func (d Deckbox) MultiverseSet() map[int]bool {
 	return set
 }
 
-func (d* Deckbox) Add(card Card) error {
+func (d *Deckbox) Add(card Card) error {
 	if len(card.Editions) == 0 {
 		return fmt.Errorf("%s has no editions", card.Name)
 	}
@@ -72,7 +73,6 @@ func (d* Deckbox) Add(card Card) error {
 	return nil
 }
 
-
 type Card struct {
 	Name          string    `json:"name"`
 	Id            string    `json:"id"`
@@ -83,8 +83,10 @@ type Card struct {
 	Special       string    `json:"special"` //'flip', 'double-faced', 'split'
 	PartnerCard   string    `json:"partner_card"`
 	RulesText     []string  `json:"rules_text"`
+	ColorIndicator []string  `json:"color_indicator"`
 	Power         string    `json:"power"`
 	Toughness     string    `json:"toughness"`
+	Loyalty       int       `json:"loyalty"`
 	Editions      []Edition `json:"editions"`
 }
 
@@ -201,7 +203,7 @@ func FlattenWithSymbols(n *html.Node) string {
 	return text
 }
 
-func extractManaCost(n *html.Node) string {
+func extractManaCost(n *html.Node, prefix string) string {
 	cost := ""
 	for _, a := range FindAll(n, prefix+"manaRow .value img") {
 		cost += manaSymbol(Attr(a, "alt"))
@@ -209,7 +211,7 @@ func extractManaCost(n *html.Node) string {
 	return cost
 }
 
-func extractPT(n *html.Node) (string, string) {
+func extractPT(n *html.Node, prefix string) (string, string) {
 	div, found := Find(n, prefix+"ptRow .value")
 
 	if !found {
@@ -235,7 +237,7 @@ func SplitTrimSpace(source, pattern string) []string {
 	return result
 }
 
-func extractTypes(n *html.Node) ([]string, []string) {
+func extractTypes(n *html.Node, prefix string) ([]string, []string) {
 	div, found := Find(n, prefix+"typeRow .value")
 
 	if !found {
@@ -258,13 +260,30 @@ func extractTypes(n *html.Node) ([]string, []string) {
 	return types, subtypes
 }
 
-func extractRarity(n *html.Node) string {
+func extractRarity(n *html.Node, prefix string) string {
 	if span, found := Find(n, prefix+"rarityRow .value span"); found {
 		return Attr(span, "class")
 	} else {
 		return ""
 	}
 }
+
+func extractColorIndicator(n *html.Node, pattern string) []string {
+	div, found := Find(n, pattern+"colorIndicatorRow .value")
+
+	if !found {
+		return nil
+	}
+
+	colors := []string{}
+
+	for _, color := range strings.Split(strings.TrimSpace(Flatten(div)), ",") {
+		colors = append(colors, strings.ToLower(strings.TrimSpace(color)))
+	}
+
+	return colors
+}
+
 
 func extractInt(n *html.Node, pattern string) int {
 	div, found := Find(n, pattern)
@@ -282,6 +301,29 @@ func extractInt(n *html.Node, pattern string) int {
 	return number
 }
 
+func extractId(n *html.Node, pattern string) int {
+	img, found := Find(n, pattern)
+
+	if !found {
+		return 0
+	}
+
+	url, err := url.Parse(Attr(img, "src"))
+
+	if err != nil {
+		return 0
+	}
+
+	mid := url.Query().Get("multiverseid")
+	multiverseid, err := strconv.Atoi(mid)
+
+	if err != nil {
+		return 0
+	}
+
+	return multiverseid
+}
+
 func extractText(n *html.Node, pattern string) []string {
 	rules := []string{}
 	for _, node := range FindAll(n, pattern) {
@@ -296,40 +338,53 @@ func hash(in string) string {
 	return fmt.Sprintf("%x", h.Sum(nil))
 }
 
-func ParseCards(page io.Reader, multiverseid int) ([]Card, error) {
-	doc, err := html.Parse(page)
-
+func parseCard(doc *html.Node, prefix string) Card {
 	card := Card{}
-	edition := Edition{}
-
-	if err != nil {
-		return []Card{card}, err
-	}
-
 	card.Name = extractString(doc, prefix+"nameRow .value")
 	card.Id = hash(card.Name)
-	card.ManaCost = extractManaCost(doc)
+	card.ManaCost = extractManaCost(doc, prefix)
 	card.ConvertedCost = extractInt(doc, prefix+"cmcRow .value")
 	card.RulesText = extractText(doc, prefix+"textRow .value .cardtextbox")
-	card.Types, card.Subtypes = extractTypes(doc)
-	card.Power, card.Toughness = extractPT(doc)
+	card.ColorIndicator = extractColorIndicator(doc, prefix)
+	card.Types, card.Subtypes = extractTypes(doc, prefix)
+	card.Power, card.Toughness = extractPT(doc, prefix)
 
+	edition := Edition{}
 	edition.Number = extractString(doc, prefix+"numberRow .value")
 	edition.Artist = extractString(doc, prefix+"artistRow .value")
 	edition.Set = extractString(doc, prefix+"setRow .value")
 	edition.FlavorText = extractText(doc, prefix+"flavorRow .value .cardtextbox")
-	edition.Rarity = extractRarity(doc)
-	edition.MultiverseId = multiverseid
+	edition.Rarity = extractRarity(doc, prefix)
 	edition.Watermark = extractString(doc, prefix+"markRow .value")
+	edition.MultiverseId = extractId(doc, prefix+"cardImage")
 
 	card.Editions = append(card.Editions, edition)
+	return card
+}
 
-	return []Card{card}, nil
+func ParseCards(page io.Reader, multiverseid int) ([]Card, error) {
+	doc, err := html.Parse(page)
+
+	if err != nil {
+		return []Card{Card{}}, err
+	}
+
+	_, found := Find(doc, prefixLeft+"cardImage")
+
+	if found {
+		left := parseCard(doc, prefixLeft)
+		right := parseCard(doc, prefixRight)
+		left.PartnerCard = right.Id
+		right.PartnerCard = left.Id
+		return []Card{left, right}, nil
+	} else {
+		return []Card{parseCard(doc, prefixSingle)}, nil
+	}
 }
 
 type SearchResult struct {
-	Name string
-	Id string
+	Name         string
+	Id           string
 	MultiverseId int
 }
 
@@ -361,8 +416,8 @@ func ParseSearch(page io.Reader) ([]SearchResult, error) {
 		name := strings.TrimSpace(Flatten(a))
 
 		results = append(results, SearchResult{
-			Name: name,
-			Id: hash(name),
+			Name:         name,
+			Id:           hash(name),
 			MultiverseId: multiverseid,
 		})
 	}
@@ -444,7 +499,7 @@ func main() {
 					log.Println(err)
 					continue
 				}
-	
+
 				cards, _ := ParseCards(resp.Body, id)
 
 				for _, card := range cards {
