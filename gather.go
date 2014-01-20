@@ -68,6 +68,40 @@ func manaSymbol(alt string) string {
 		return "{BP}"
 	case "Phyrexian White":
 		return "{WP}"
+	case "White or Blue":
+		return "{W/U}"
+	case "White or Black":
+		return "{W/B}"
+	case "Blue or Black":
+		return "{U/B}"
+	case "Blue or Red":
+		return "{U/R}"
+	case "Black or Red":
+		return "{B/R}"
+	case "Black or Green":
+		return "{B/G}"
+	case "Red or Green":
+		return "{R/G}"
+	case "Red or White":
+		return "{R/W}"
+	case "Green or White":
+		return "{G/W}"
+	case "Green or Blue":
+		return "{G/U}"
+	case "Two or White":
+		return "{2/W}"
+	case "Two or Blue":
+		return "{2/U}"
+	case "Two or Black":
+		return "{2/B}"
+	case "Two or Red":
+		return "{2/R}"
+	case "Two or Green ":
+		return "{2/G}"
+	case "Variable Colorless":
+		return "{X}"
+	case "Snow":
+		return "{S}"
 	case "Green":
 		return "{G}"
 	case "Red":
