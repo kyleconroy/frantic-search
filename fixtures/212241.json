@@ -1,0 +1,22 @@
+{
+  "mana_cost": "{3}{W}{W}",
+  "id": "c4bded7815e2e999ac2fa44798cee49c",
+  "name": "Elspeth Tirel",
+  "converted_cost": 5,
+  "types": ["planeswalker"],
+  "subtypes": ["elspeth"],
+  "rules_text": [
+    "+2: You gain 1 life for each creature you control.",
+    "-2: Put three 1/1 white Soldier creature tokens onto the battlefield.",
+    "-5: Destroy all other permanents except for lands and tokens."
+  ],
+  "loyalty": 4,
+  "editions": [{
+    "multiverse_id": 212241,
+    "rarity": "mythic",
+    "set": "Scars of Mirrodin",
+    "artist": "Michael Komarck",
+    "flavor_text": [],
+    "number": "6"
+  }]
+}

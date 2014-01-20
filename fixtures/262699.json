@@ -1,0 +1,24 @@
+{
+  "name": "Ravager of the Fells",
+  "id":"618f816c529131209ef22dcde95fafdb",
+  "types": ["creature"],
+  "color_indicator": ["red", "green"],
+  "subtypes": ["werewolf"],
+  "partner_card": "60ba7068dee08cb8ab401f1207f9831a",
+  "rules_text": [
+    "Trample",
+    "Whenever this creature transforms into Ravager of the Fells, it deals 2 damage to target opponent and 2 damage to up to one target creature that player controls.",
+    "At the beginning of each upkeep, if a player cast two or more spells last turn, transform Ravager of the Fells."
+  ],
+  "power": "4",
+  "toughness": "4",
+  "editions": [{
+    "flavor_text": [],
+    "set": "Dark Ascension",
+    "rarity": "mythic",
+    "number": "140b",
+    "multiverse_id": 262699,
+    "artist": "Chris Rahn"
+  }]
+}
+    

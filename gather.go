@@ -345,6 +345,7 @@ func parseCard(doc *html.Node, prefix string) Card {
 	card.ManaCost = extractManaCost(doc, prefix)
 	card.ConvertedCost = extractInt(doc, prefix+"cmcRow .value")
 	card.RulesText = extractText(doc, prefix+"textRow .value .cardtextbox")
+	card.Loyalty = extractInt(doc, prefix+"ptRow .value")
 	card.ColorIndicator = extractColorIndicator(doc, prefix)
 	card.Types, card.Subtypes = extractTypes(doc, prefix)
 	card.Power, card.Toughness = extractPT(doc, prefix)

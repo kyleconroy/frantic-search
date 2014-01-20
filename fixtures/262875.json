@@ -1,0 +1,24 @@
+{
+  "name": "Huntmaster of the Fells",
+  "mana_cost": "{2}{R}{G}",
+  "id": "60ba7068dee08cb8ab401f1207f9831a",
+  "partner_card": "618f816c529131209ef22dcde95fafdb",
+  "converted_cost": 4,
+  "types": ["creature"],
+  "subtypes": ["human", "werewolf"],
+  "rules_text": [
+    "Whenever this creature enters the battlefield or transforms into Huntmaster of the Fells, put a 2/2 green Wolf creature token onto the battlefield and you gain 2 life.",
+    "At the beginning of each upkeep, if no spells were cast last turn, transform Huntmaster of the Fells."
+  ],
+  "power": "2",
+  "toughness": "2",
+  "editions": [{
+    "set": "Dark Ascension",
+    "rarity": "mythic",
+    "number": "140a",
+    "artist": "Chris Rahn",
+    "flavor_text": [],
+    "multiverse_id": 262875
+  }]
+}
+    
