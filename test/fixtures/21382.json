@@ -1,7 +1,7 @@
 {
   "id": "01955afb7ad8ad3688eeaa0bf584810d",
   "name": "Elephant Resurgence",
-  "mana_cost": "1G",
+  "mana_cost": "{1}{G}",
   "converted_cost": 2,
   "types": ["sorcery"],
   "subtypes": [],
@@ -10,6 +10,7 @@
     "rarity": "rare",
     "number": "113",
     "set": "Prophecy",
+    "flavor_text": [],
     "artist": "DiTerlizzi"
   }]
 }

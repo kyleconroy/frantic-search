@@ -1,5 +1,5 @@
 {
-  "mana_cost": "5U",
+  "mana_cost": "{5}{U}",
   "id": "7e735211b6872b7dd7844db738955be5",
   "name": "Æthersnipe",
   "converted_cost": 6,
@@ -15,6 +15,7 @@
     "rarity": "common",
     "set": "Duel Decks: Jace vs. Chandra",
     "artist": "Zoltan Boros & Gabor Szikszai",
+    "flavor_text": [],
     "number": "17"
   }]
 }

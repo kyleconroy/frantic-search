@@ -30,11 +30,11 @@ type Card struct {
 
 type Edition struct {
 	Set          string `json:"set"`
+	Watermark          string `json:"watermark"`
 	Rarity       string `json:"rarity"`
 	Artist       string `json:"artist"`
 	MultiverseId int    `json:"multiverse"`
-	Mark         string `json:"mark"`
-	FlavorText   string `json:"flavor_text"`
+	FlavorText   []string `json:"flavor_text"`
 	Number       string `json:"number"`
 }
 
@@ -57,17 +57,27 @@ func extractString(n *html.Node, pattern string) string {
 func manaSymbol(alt string) string {
 	switch alt {
 	case "0", "1", "2", "3", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15":
-		return alt
+		return "{" + alt + "}"
+	case "Phyrexian Green":
+		return "{UG}"
+	case "Phyrexian Red":
+		return "{UR}"
+	case "Phyrexian Blue":
+		return "{UP}"
+	case "Phyrexian Black":
+		return "{BP}"
+	case "Phyrexian White":
+		return "{WP}"
 	case "Green":
-		return "G"
+		return "{G}"
 	case "Red":
-		return "R"
+		return "{R}"
 	case "Blue":
-		return "U"
+		return "{U}"
 	case "Black":
-		return "B"
+		return "{B}"
 	case "White":
-		return "W"
+		return "{W}"
 	}
 	return ""
 }
@@ -79,7 +89,7 @@ func FlattenWithSymbols(n *html.Node) string {
 	}
 
 	if n.Type == html.ElementNode && n.Data == "img" {
-		text += "{" + manaSymbol(Attr(n, "alt")) + "}"
+		text += manaSymbol(Attr(n, "alt"))
 	}
 
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
@@ -170,9 +180,9 @@ func extractInt(n *html.Node, pattern string) int {
 	return number
 }
 
-func extractRulesText(n *html.Node) []string {
+func extractText(n *html.Node, pattern string) []string {
 	rules := []string{}
-	for _, node := range FindAll(n, prefix+"textRow .value .cardtextbox") {
+	for _, node := range FindAll(n, pattern) {
 		rules = append(rules, strings.TrimSpace(FlattenWithSymbols(node)))
 	}
 	return rules
@@ -198,15 +208,16 @@ func ParseCard(page io.Reader) (Card, error) {
 	card.Id = hash(card.Name)
 	card.ManaCost = extractManaCost(doc)
 	card.ConvertedCost = extractInt(doc, prefix+"cmcRow .value")
-	card.RulesText = extractRulesText(doc)
+	card.RulesText = extractText(doc, prefix+"textRow .value .cardtextbox")
 	card.Types, card.Subtypes = extractTypes(doc)
 	card.Power, card.Toughness = extractPT(doc)
 
 	edition.Number = extractString(doc, prefix+"numberRow .value")
 	edition.Artist = extractString(doc, prefix+"artistRow .value")
 	edition.Set = extractString(doc, prefix+"setRow .value")
-	edition.FlavorText = extractString(doc, prefix+"FlavorText")
+	edition.FlavorText = extractText(doc, prefix+"flavorRow .value .cardtextbox")
 	edition.Rarity = extractRarity(doc)
+	edition.Watermark = extractString(doc, prefix+"markRow .value")
 
 	card.Editions = append(card.Editions, edition)
 
