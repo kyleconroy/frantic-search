@@ -79,27 +79,27 @@ type Card struct {
 	Name           string    `json:"name"`
 	Id             string    `json:"id"`
 	Types          []string  `json:"types"`
-	Subtypes       []string  `json:"subtypes"`
+	Subtypes       []string  `json:"subtypes,omitempty"`
 	ConvertedCost  int       `json:"converted_cost"`
 	ManaCost       string    `json:"mana_cost"`
-	Special        string    `json:"special"` //'flip', 'double-faced', 'split'
-	PartnerCard    string    `json:"partner_card"`
+	Special        string    `json:"special,omitempty"` //'flip', 'double-faced', 'split'
+	PartnerCard    string    `json:"partner_card,omitempty"`
 	RulesText      []string  `json:"rules_text"`
-	ColorIndicator []string  `json:"color_indicator"`
-	Power          string    `json:"power"`
-	Toughness      string    `json:"toughness"`
-	Loyalty        int       `json:"loyalty"`
+	ColorIndicator []string  `json:"color_indicator,omitempty"`
+	Power          string    `json:"power,omitempty"`
+	Toughness      string    `json:"toughness,omitempty"`
+	Loyalty        int       `json:"loyalty,omitempty"`
 	Editions       []Edition `json:"editions"`
 }
 
 type Edition struct {
 	Set          string   `json:"set"`
-	Watermark    string   `json:"watermark"`
+	Watermark    string   `json:"watermark,omitempty"`
 	Rarity       string   `json:"rarity"`
 	Artist       string   `json:"artist"`
 	MultiverseId int      `json:"multiverse_id"`
-	FlavorText   []string `json:"flavor_text"`
-	Number       string   `json:"number"`
+	FlavorText   []string `json:"flavor_text,omitempty"`
+	Number       string   `json:"number,omitempty"`
 }
 
 func (c Card) ImageURl() string {
@@ -473,7 +473,7 @@ func main() {
 	// Create a set of all multiverse ids I've already seen
 	// Create a Card channel and a int channel
 	cardChan := make(chan Card)
-	multiverseChan := make(chan int, 10)
+	multiverseChan := make(chan int, 1000)
 
 	// Start a routines to count ids
 	go func() {
@@ -482,8 +482,10 @@ func main() {
 
 		for {
 			if page > 140 {
-				break
+				return
 			}
+			log.Printf("Parsing page %d", page)
+
 			// Generate Url
 			url := fmt.Sprintf(searchUrl, page)
 
