@@ -41,7 +41,7 @@ func TestCreatureCard(t *testing.T) {
 			t.Errorf("%5d: Couldn't load %s", id, path)
 		}
 
-		card, err := ParseCard(file)
+		card, err := ParseCard(file, id)
 
 		if !reflect.DeepEqual(card, expected) {
 

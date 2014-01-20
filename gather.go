@@ -3,15 +3,62 @@ package main
 import (
 	"code.google.com/p/go.net/html"
 	"crypto/md5"
+	"net/http"
+	"encoding/json"
+	"flag"
 	"fmt"
 	"io"
+	"io/ioutil"
+	"log"
 	"strconv"
 	"strings"
 )
 
 const (
 	prefix = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_"
+	gathererUrl = "http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=%d"
 )
+
+type Deckbox struct {
+	Cards []Card `json:"cards"`
+}
+
+func (d Deckbox) MultiverseSet() map[int]bool {
+	set := map[int]bool{}
+
+	for _, card := range d.Cards {
+		for _, edition := range card.Editions {
+			set[edition.MultiverseId] = true
+		}
+	}
+
+	return set
+}
+
+func (d* Deckbox) Add(card Card) error {
+	if len(card.Editions) == 0 {
+		return fmt.Errorf("%s has no editions", card.Name)
+	}
+
+	for i, c := range d.Cards {
+		if c.Id == card.Id {
+			edition := card.Editions[0]
+
+			for _, e := range c.Editions {
+				if e.MultiverseId == edition.MultiverseId {
+					return nil
+				}
+			}
+
+			d.Cards[i].Editions = append(card.Editions, edition)
+			return nil
+		}
+	}
+
+	d.Cards = append(d.Cards, card)
+	return nil
+}
+
 
 type Card struct {
 	Name          string    `json:"name"`
@@ -29,13 +76,13 @@ type Card struct {
 }
 
 type Edition struct {
-	Set          string `json:"set"`
-	Watermark          string `json:"watermark"`
-	Rarity       string `json:"rarity"`
-	Artist       string `json:"artist"`
-	MultiverseId int    `json:"multiverse"`
+	Set          string   `json:"set"`
+	Watermark    string   `json:"watermark"`
+	Rarity       string   `json:"rarity"`
+	Artist       string   `json:"artist"`
+	MultiverseId int      `json:"multiverse_id"`
 	FlavorText   []string `json:"flavor_text"`
-	Number       string `json:"number"`
+	Number       string   `json:"number"`
 }
 
 func (c Card) ImageURl() string {
@@ -112,6 +159,10 @@ func manaSymbol(alt string) string {
 		return "{B}"
 	case "White":
 		return "{W}"
+	case "Tap":
+		return "{T}"
+	case "Untap":
+		return "{Q}"
 	}
 	return ""
 }
@@ -228,7 +279,7 @@ func hash(in string) string {
 	return fmt.Sprintf("%x", h.Sum(nil))
 }
 
-func ParseCard(page io.Reader) (Card, error) {
+func ParseCard(page io.Reader, multiverseid int) (Card, error) {
 	doc, err := html.Parse(page)
 
 	card := Card{}
@@ -251,6 +302,7 @@ func ParseCard(page io.Reader) (Card, error) {
 	edition.Set = extractString(doc, prefix+"setRow .value")
 	edition.FlavorText = extractText(doc, prefix+"flavorRow .value .cardtextbox")
 	edition.Rarity = extractRarity(doc)
+	edition.MultiverseId = multiverseid
 	edition.Watermark = extractString(doc, prefix+"markRow .value")
 
 	card.Editions = append(card.Editions, edition)
@@ -259,5 +311,87 @@ func ParseCard(page io.Reader) (Card, error) {
 }
 
 func main() {
-	fmt.Println("Foo")
+	flag.Parse()
+
+	path := flag.Arg(0)
+
+	blob, err := ioutil.ReadFile(path)
+
+	if err != nil {
+		log.Println("Couldn't open file, starting from scratch")
+		blob = []byte(`{"cards": []}`)
+	}
+
+	var box Deckbox
+
+	err = json.Unmarshal(blob, &box)
+
+	if err != nil {
+		log.Fatalf("Can't decode a JSON object in %s", path)
+	}
+
+	// Create a set of all multiverse ids I've already seen
+	set := box.MultiverseSet()
+
+	// Create a Card channel and a int channel
+	cardChan := make(chan Card)
+	multiverseChan := make(chan int, 10)
+
+	// Start a routines to count ids
+	go func() {
+		for i := 1; i < 10000000; i++ {
+			if !set[i] {
+				multiverseChan <- i
+			}
+		}
+	}()
+
+	// Start N go routines to go fetch and parse cards
+	for j := 0; j < 10; j++ {
+		go func() {
+			for {
+				id := <-multiverseChan
+				log.Printf("Fetch %d", id)
+
+				url := fmt.Sprintf(gathererUrl, id)
+				resp, err := http.Get(url)
+
+				if err != nil {
+					log.Println(err)
+					continue
+				}
+	
+				card, _ := ParseCard(resp.Body, id)
+
+				cardChan <- card
+			}
+		}()
+	}
+
+	// One go rotine pulls cards off the channel, adds them to the database
+	// And flushes it to memory
+	for {
+		card := <-cardChan
+
+		err := box.Add(card)
+
+		if err != nil {
+			log.Printf("ERROR Couldn't add card to database %s", card.Name)
+			continue
+		}
+
+		log.Printf("Added %s", card.Name)
+
+		blob, err := json.Marshal(box)
+
+		if err != nil {
+			log.Fatalf("Couldn't marshal card database to JSON: %s", err)
+		}
+
+		err = ioutil.WriteFile(path, blob, 0644)
+
+		if err != nil {
+			log.Fatalf("Couldn't write card database: %s", err)
+		}
+	}
 }
