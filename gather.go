@@ -74,20 +74,20 @@ func (d *Deckbox) Add(card Card) error {
 }
 
 type Card struct {
-	Name          string    `json:"name"`
-	Id            string    `json:"id"`
-	Types         []string  `json:"types"`
-	Subtypes      []string  `json:"subtypes"`
-	ConvertedCost int       `json:"converted_cost"`
-	ManaCost      string    `json:"mana_cost"`
-	Special       string    `json:"special"` //'flip', 'double-faced', 'split'
-	PartnerCard   string    `json:"partner_card"`
-	RulesText     []string  `json:"rules_text"`
+	Name           string    `json:"name"`
+	Id             string    `json:"id"`
+	Types          []string  `json:"types"`
+	Subtypes       []string  `json:"subtypes"`
+	ConvertedCost  int       `json:"converted_cost"`
+	ManaCost       string    `json:"mana_cost"`
+	Special        string    `json:"special"` //'flip', 'double-faced', 'split'
+	PartnerCard    string    `json:"partner_card"`
+	RulesText      []string  `json:"rules_text"`
 	ColorIndicator []string  `json:"color_indicator"`
-	Power         string    `json:"power"`
-	Toughness     string    `json:"toughness"`
-	Loyalty       int       `json:"loyalty"`
-	Editions      []Edition `json:"editions"`
+	Power          string    `json:"power"`
+	Toughness      string    `json:"toughness"`
+	Loyalty        int       `json:"loyalty"`
+	Editions       []Edition `json:"editions"`
 }
 
 type Edition struct {
@@ -283,7 +283,6 @@ func extractColorIndicator(n *html.Node, pattern string) []string {
 
 	return colors
 }
-
 
 func extractInt(n *html.Node, pattern string) int {
 	div, found := Find(n, pattern)
@@ -491,7 +490,6 @@ func main() {
 		go func() {
 			for {
 				id := <-multiverseChan
-				log.Printf("Fetch %d", id)
 
 				url := fmt.Sprintf(gathererUrl, id)
 				resp, err := http.Get(url)
@@ -504,6 +502,12 @@ func main() {
 				cards, _ := ParseCards(resp.Body, id)
 
 				for _, card := range cards {
+
+					if card.Name == "" {
+						log.Printf("ERROR Couldn't parse card for id: %d", id)
+						continue
+					}
+
 					cardChan <- card
 				}
 			}
