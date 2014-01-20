@@ -2,6 +2,7 @@ package main
 
 import (
 	"code.google.com/p/go.net/html"
+	"crypto/md5"
 	"fmt"
 	"io"
 	"strconv"
@@ -13,23 +14,28 @@ const (
 )
 
 type Card struct {
-	Artist        string   `json:"artist"`
-	Name          string   `json:"name"`
-	Number        string   `json:"number"`
-	Rarity        string   `json:"rarity"`
-	Types         []string `json:"types"`
-	Subtypes      []string `json:"subtypes"`
-	Set           string   `json:"set"`
-	MultiverseId  int      `json:"multiverse"`
-	ConvertedCost int      `json:"converted_cost"`
-	ManaCost      string   `json:"mana_cost"`
-	Special       string   `json:"special"` //'flip', 'double-faced', 'split'
-	PartnerCard   int      `json:"partner_card"`
-	Mark          string   `json:"mark"`
-	RulesText     string   `json:"rules_text"`
-	FlavorText    string   `json:"flavor_text"`
-	Power         string   `json:"power"`
-	Toughness     string   `json:"toughness"`
+	Name          string    `json:"name"`
+	Id            string    `json:"id"`
+	Types         []string  `json:"types"`
+	Subtypes      []string  `json:"subtypes"`
+	ConvertedCost int       `json:"converted_cost"`
+	ManaCost      string    `json:"mana_cost"`
+	Special       string    `json:"special"` //'flip', 'double-faced', 'split'
+	PartnerCard   string    `json:"partner_card"`
+	RulesText     []string  `json:"rules_text"`
+	Power         string    `json:"power"`
+	Toughness     string    `json:"toughness"`
+	Editions      []Edition `json:"editions"`
+}
+
+type Edition struct {
+	Set          string `json:"set"`
+	Rarity       string `json:"rarity"`
+	Artist       string `json:"artist"`
+	MultiverseId int    `json:"multiverse"`
+	Mark         string `json:"mark"`
+	FlavorText   string `json:"flavor_text"`
+	Number       string `json:"number"`
 }
 
 func (c Card) ImageURl() string {
@@ -66,6 +72,23 @@ func manaSymbol(alt string) string {
 	return ""
 }
 
+func FlattenWithSymbols(n *html.Node) string {
+	text := ""
+	if n.Type == html.TextNode {
+		text += n.Data
+	}
+
+	if n.Type == html.ElementNode && n.Data == "img" {
+		text += "{" + manaSymbol(Attr(n, "alt")) + "}"
+	}
+
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		text += FlattenWithSymbols(c)
+	}
+
+	return text
+}
+
 func extractManaCost(n *html.Node) string {
 	cost := ""
 	for _, a := range FindAll(n, prefix+"manaRow .value img") {
@@ -80,7 +103,7 @@ func extractPT(n *html.Node) (string, string) {
 	if !found {
 		return "", ""
 	}
-		
+
 	values := strings.Split(strings.TrimSpace(Flatten(div)), "/")
 
 	if len(values) != 2 {
@@ -94,7 +117,7 @@ func SplitTrimSpace(source, pattern string) []string {
 	result := []string{}
 
 	for _, val := range strings.Split(strings.TrimSpace(source), pattern) {
-		result  = append(result, strings.TrimSpace(val))
+		result = append(result, strings.TrimSpace(val))
 	}
 
 	return result
@@ -123,7 +146,6 @@ func extractTypes(n *html.Node) ([]string, []string) {
 	return types, subtypes
 }
 
-
 func extractRarity(n *html.Node) string {
 	if span, found := Find(n, prefix+"rarityRow .value span"); found {
 		return Attr(span, "class")
@@ -148,26 +170,45 @@ func extractInt(n *html.Node, pattern string) int {
 	return number
 }
 
+func extractRulesText(n *html.Node) []string {
+	rules := []string{}
+	for _, node := range FindAll(n, prefix+"textRow .value .cardtextbox") {
+		rules = append(rules, strings.TrimSpace(FlattenWithSymbols(node)))
+	}
+	return rules
+}
+
+func hash(in string) string {
+	h := md5.New()
+	io.WriteString(h, in)
+	return fmt.Sprintf("%x", h.Sum(nil))
+}
+
 func ParseCard(page io.Reader) (Card, error) {
 	doc, err := html.Parse(page)
 
 	card := Card{}
+	edition := Edition{}
 
 	if err != nil {
 		return card, err
 	}
 
-	card.Rarity = extractRarity(doc)
 	card.Name = extractString(doc, prefix+"nameRow .value")
+	card.Id = hash(card.Name)
 	card.ManaCost = extractManaCost(doc)
 	card.ConvertedCost = extractInt(doc, prefix+"cmcRow .value")
-	card.Number = extractString(doc, prefix+"numberRow .value")
-	card.RulesText = extractString(doc, prefix+"textRow .value")
-	card.Artist = extractString(doc, prefix+"artistRow .value")
-	card.Set = extractString(doc, prefix+"setRow .value")
-	card.FlavorText = extractString(doc, prefix+"FlavorText")
+	card.RulesText = extractRulesText(doc)
 	card.Types, card.Subtypes = extractTypes(doc)
 	card.Power, card.Toughness = extractPT(doc)
+
+	edition.Number = extractString(doc, prefix+"numberRow .value")
+	edition.Artist = extractString(doc, prefix+"artistRow .value")
+	edition.Set = extractString(doc, prefix+"setRow .value")
+	edition.FlavorText = extractString(doc, prefix+"FlavorText")
+	edition.Rarity = extractRarity(doc)
+
+	card.Editions = append(card.Editions, edition)
 
 	return card, nil
 }

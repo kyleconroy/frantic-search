@@ -23,3 +23,29 @@ class Card:
 	toughness = string
 	expansion = string 
 
+
+## Printings Versus Cards
+
+A card has some attributes that cannot change
+
+- Name (key)
+- ID (md5 of the English version of the card)
+- Converted Cost
+- Mana Cost
+- Rules Text
+- Power
+- Toughness
+- Partner Card
+- Special
+- Types
+- Color Identity
+- Subtypes
+
+A printing has these attributes
+
+- Number
+- Artist
+- Rarity
+- FlavorText
+- MultiverseId
+- Mark

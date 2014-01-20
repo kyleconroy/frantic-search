@@ -1,12 +1,15 @@
 {
+  "id": "01955afb7ad8ad3688eeaa0bf584810d",
   "name": "Elephant Resurgence",
   "mana_cost": "1G",
   "converted_cost": 2,
-  "rarity": "rare",
   "types": ["sorcery"],
   "subtypes": [],
-  "rules_text": "Each player puts a green Elephant creature token onto the battlefield. Those creatures have \"This creature's power and toughness are each equal to the number of creature cards in its controller's graveyard.\"",
-  "number": "113",
-  "set": "Prophecy",
-  "artist": "DiTerlizzi"
+  "rules_text": ["Each player puts a green Elephant creature token onto the battlefield. Those creatures have \"This creature's power and toughness are each equal to the number of creature cards in its controller's graveyard.\""],
+  "editions": [{
+    "rarity": "rare",
+    "number": "113",
+    "set": "Prophecy",
+    "artist": "DiTerlizzi"
+  }]
 }

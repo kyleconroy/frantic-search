@@ -43,7 +43,7 @@ func TestCreatureCard(t *testing.T) {
 		card, err := ParseCard(file)
 
 		if !reflect.DeepEqual(card, expected) {
-			t.Errorf("%5d: Cards did not match: %+v != %+v", id, card, expected)
+			t.Errorf("%5d: Cards did not match: Got: \n%+v\ninstead of\n%+v", id, card, expected)
 		}
 	}
 }
