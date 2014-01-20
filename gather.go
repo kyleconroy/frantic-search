@@ -17,8 +17,10 @@ import (
 
 const (
 	prefixSingle = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_"
-	prefixLeft   = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl07_"
-	prefixRight  = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl08_"
+	prefixFront   = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl07_"
+	prefixBack  = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl08_"
+	prefixLeft   = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl09_"
+	prefixRight  = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl10_"
 	gathererUrl  = "http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=%d"
 	searchUrl    = "http://gatherer.wizards.com/Pages/Search/Default.aspx?output=compact&action=advanced&special=true&cmc=|>%%3d[0]|<%%3d[0]&page=%d"
 )
@@ -326,7 +328,11 @@ func extractId(n *html.Node, pattern string) int {
 func extractText(n *html.Node, pattern string) []string {
 	rules := []string{}
 	for _, node := range FindAll(n, pattern) {
-		rules = append(rules, strings.TrimSpace(FlattenWithSymbols(node)))
+		rule := strings.TrimSpace(FlattenWithSymbols(node))
+
+		if rule != "" {
+			rules = append(rules, rule)
+		}
 	}
 	return rules
 }
@@ -369,14 +375,28 @@ func ParseCards(page io.Reader, multiverseid int) ([]Card, error) {
 		return []Card{Card{}}, err
 	}
 
-	_, found := Find(doc, prefixLeft+"cardImage")
+	var prefixA, prefixB, special string
 
-	if found {
-		left := parseCard(doc, prefixLeft)
-		right := parseCard(doc, prefixRight)
-		left.PartnerCard = right.Id
-		right.PartnerCard = left.Id
-		return []Card{left, right}, nil
+	if _, found := Find(doc, prefixLeft+"cardImage"); found {
+		prefixA = prefixLeft
+		prefixB = prefixRight
+		special = "split"
+	} else if _, found := Find(doc, prefixFront+"cardImage"); found {
+		prefixA = prefixFront
+		prefixB = prefixBack
+		special = "double-faced"
+	}
+
+	if special != "" {
+		a := parseCard(doc, prefixA)
+		b := parseCard(doc, prefixB)
+
+		a.PartnerCard = b.Id
+		b.PartnerCard = a.Id
+
+		a.Special = special
+		b.Special = special
+		return []Card{a, b}, nil
 	} else {
 		return []Card{parseCard(doc, prefixSingle)}, nil
 	}

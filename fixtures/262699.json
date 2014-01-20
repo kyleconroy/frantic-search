@@ -4,6 +4,7 @@
   "types": ["creature"],
   "color_indicator": ["red", "green"],
   "subtypes": ["werewolf"],
+  "special": "double-faced",
   "partner_card": "60ba7068dee08cb8ab401f1207f9831a",
   "rules_text": [
     "Trample",

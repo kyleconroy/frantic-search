@@ -125,4 +125,5 @@ func TestSplitCards(t *testing.T) {
 	}
 
 	split("fixtures/huntmaster.html", 262875, 262699)
+	split("fixtures/standdeliver.html", 20574, 205740)
 }

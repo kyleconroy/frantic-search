@@ -1,0 +1,19 @@
+{
+  "id": "55f090686d433b9f61cdbacc4a741375",
+  "name": "Deliver",
+  "mana_cost": "{2}{U}",
+  "converted_cost": 3,
+  "types": ["instant"],
+  "subtypes": [],
+  "special": "split",
+  "partner_card": "f5e531e3638cf8a722a9cd26831e108f",
+  "rules_text": ["Return target permanent to its owner's hand."],
+  "editions": [{
+    "rarity": "uncommon",
+    "number": "292a",
+    "multiverse_id": 20574,
+    "set": "Invasion",
+    "flavor_text": [],
+    "artist": "David Martin"
+  }]
+}

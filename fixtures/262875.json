@@ -5,6 +5,7 @@
   "partner_card": "618f816c529131209ef22dcde95fafdb",
   "converted_cost": 4,
   "types": ["creature"],
+  "special": "double-faced",
   "subtypes": ["human", "werewolf"],
   "rules_text": [
     "Whenever this creature enters the battlefield or transforms into Huntmaster of the Fells, put a 2/2 green Wolf creature token onto the battlefield and you gain 2 life.",

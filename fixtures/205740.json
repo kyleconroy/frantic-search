@@ -1,0 +1,20 @@
+{
+  "id": "f5e531e3638cf8a722a9cd26831e108f",
+  "name": "Stand",
+  "mana_cost": "{W}",
+  "converted_cost": 1,
+  "types": ["instant"],
+  "subtypes": [],
+  "special": "split",
+  "partner_card": "55f090686d433b9f61cdbacc4a741375",
+  "rules_text": ["Prevent the next 2 damage that would be dealt to target creature this turn."],
+  "editions": [{
+    "rarity": "uncommon",
+    "number": "292b",
+    "multiverse_id": 20574,
+    "set": "Invasion",
+    "flavor_text": [],
+    "artist": "David Martin"
+  }]
+}
+
