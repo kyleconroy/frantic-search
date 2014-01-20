@@ -2,6 +2,7 @@ package main
 
 import (
 	"code.google.com/p/go.net/html"
+	"net/url"
 	"crypto/md5"
 	"net/http"
 	"encoding/json"
@@ -17,11 +18,23 @@ import (
 const (
 	prefix = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_"
 	gathererUrl = "http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=%d"
+	searchUrl = "http://gatherer.wizards.com/Pages/Search/Default.aspx?output=compact&action=advanced&special=true&cmc=|>%%3d[0]|<%%3d[0]&page=%d"
 )
 
 type Deckbox struct {
 	Cards []Card `json:"cards"`
 }
+
+func (d Deckbox) IdSet() map[string]bool {
+	set := map[string]bool{}
+
+	for _, card := range d.Cards {
+		set[card.Id] = true
+	}
+
+	return set
+}
+
 
 func (d Deckbox) MultiverseSet() map[int]bool {
 	set := map[int]bool{}
@@ -103,7 +116,7 @@ func extractString(n *html.Node, pattern string) string {
 
 func manaSymbol(alt string) string {
 	switch alt {
-	case "0", "1", "2", "3", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15":
+	case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15":
 		return "{" + alt + "}"
 	case "Phyrexian":
 		return "{P}"
@@ -165,6 +178,8 @@ func manaSymbol(alt string) string {
 		return "{T}"
 	case "Untap":
 		return "{Q}"
+	case "[chaos]":
+		return "{C}"
 	}
 	return ""
 }
@@ -281,14 +296,14 @@ func hash(in string) string {
 	return fmt.Sprintf("%x", h.Sum(nil))
 }
 
-func ParseCard(page io.Reader, multiverseid int) (Card, error) {
+func ParseCards(page io.Reader, multiverseid int) ([]Card, error) {
 	doc, err := html.Parse(page)
 
 	card := Card{}
 	edition := Edition{}
 
 	if err != nil {
-		return card, err
+		return []Card{card}, err
 	}
 
 	card.Name = extractString(doc, prefix+"nameRow .value")
@@ -309,7 +324,50 @@ func ParseCard(page io.Reader, multiverseid int) (Card, error) {
 
 	card.Editions = append(card.Editions, edition)
 
-	return card, nil
+	return []Card{card}, nil
+}
+
+type SearchResult struct {
+	Name string
+	Id string
+	MultiverseId int
+}
+
+func ParseSearch(page io.Reader) ([]SearchResult, error) {
+	doc, err := html.Parse(page)
+
+	results := []SearchResult{}
+
+	if err != nil {
+		return results, err
+	}
+
+	for _, a := range FindAll(doc, ".cardItem .name a") {
+		// Parse the link to get the id
+		url, err := url.Parse(Attr(a, "href"))
+
+		if err != nil {
+			return results, err
+		}
+
+		mid := url.Query().Get("multiverseid")
+
+		multiverseid, err := strconv.Atoi(mid)
+
+		if err != nil {
+			return results, err
+		}
+
+		name := strings.TrimSpace(Flatten(a))
+
+		results = append(results, SearchResult{
+			Name: name,
+			Id: hash(name),
+			MultiverseId: multiverseid,
+		})
+	}
+
+	return results, nil
 }
 
 func main() {
@@ -332,19 +390,43 @@ func main() {
 		log.Fatalf("Can't decode a JSON object in %s", path)
 	}
 
+	set := box.IdSet()
 	// Create a set of all multiverse ids I've already seen
-	set := box.MultiverseSet()
-
 	// Create a Card channel and a int channel
 	cardChan := make(chan Card)
 	multiverseChan := make(chan int, 10)
 
 	// Start a routines to count ids
 	go func() {
-		for i := 1; i < 10000000; i++ {
-			if !set[i] {
-				multiverseChan <- i
+		// Fetch
+		page := 0
+
+		for {
+			if page > 140 {
+				break
 			}
+			// Generate Url
+			url := fmt.Sprintf(searchUrl, page)
+
+			resp, err := http.Get(url)
+
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			results, err := ParseSearch(resp.Body)
+
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			for _, result := range results {
+				if !set[result.Id] {
+					multiverseChan <- result.MultiverseId
+				}
+			}
+
+			page += 1
 		}
 	}()
 
@@ -363,9 +445,11 @@ func main() {
 					continue
 				}
 	
-				card, _ := ParseCard(resp.Body, id)
+				cards, _ := ParseCards(resp.Body, id)
 
-				cardChan <- card
+				for _, card := range cards {
+					cardChan <- card
+				}
 			}
 		}()
 	}

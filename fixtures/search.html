@@ -1,0 +1,2736 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	Card Search - Search: cmc = |> = 0|< = 0 - Gatherer - Magic: The Gathering
+</title><link rel="shortcut icon" href="/Images/favicon.ico" /><meta name="description" content="Gatherer is the Magic Card Database. Search for the perfect addition to your deck. Browse through cards from Magic's entire history. See cards from the most recent sets and discover what players just like you are saying about them." /><meta name="keywords" content="monitor, gatherer, magic cards, magic the gathering, black lotus, magic: the gathering, wizards of the coast, wizards, trading card game, trading cards, collectible card game, tcg, ccg, magic sets, game, multiplayer, hobby" />
+    
+    <!-- google analytics -->
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+    var pageTracker = _gat._getTracker("UA-15020098-7");
+    pageTracker._setDomainName(".wizards.com");
+    pageTracker._trackPageview();
+    } catch(err) {}
+    </script>
+<link type="text/css" rel="stylesheet" media="screen" href="../../Styles/Styles.css" /><link href="/WebResource.axd?d=or7PpBsqDI3hlaEEThlmVDRzePzSrFyHvCSdTElIIm8jbPXP5PySeVoGjKlN7Df_R8Yrdfm8DAtAevqXp4wu4Fffv7Dmtd4mn4Xjxa7bf43SyevX1NnB9KBh--rFBOmlJp3lTErOKCK5IJhfE-mweMernyA1&amp;amp;t=635161698994527989" rel="icon" type="image/ico" /></head>
+<body>
+    
+
+    <form method="post" action="Default.aspx?output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7c%3e%3d%5b0%5d%7c%3c%3d%5b0%5d" id="aspnetForm">
+<div>
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTEyMjI5ODM3NzhkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYDBTtjdGwwMCRjdGwwMCRjdGwwMCRNYWluQ29udGVudCRTZWFyY2hDb250cm9scyRTZWFyY2hDYXJkTmFtZQU8Y3RsMDAkY3RsMDAkY3RsMDAkTWFpbkNvbnRlbnQkU2VhcmNoQ29udHJvbHMkU2VhcmNoQ2FyZFR5cGVzBTtjdGwwMCRjdGwwMCRjdGwwMCRNYWluQ29udGVudCRTZWFyY2hDb250cm9scyRTZWFyY2hDYXJkVGV4dD0NS4S5r9zRScS2OJsvcAmvOCzV" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=0pN9zG2E2AfP6GvjnZa0AilHYhYJFthuTCfFLE-_wX3h8YY80buTRyH-ZVuoDc6QmN3kXIxYDZjrLQ37MECWKoTKFcs1&amp;t=634999200145474812" type="text/javascript"></script>
+
+
+<script src="../../Scripts/Prototype.js" type="text/javascript"></script>
+<script src="../../Scripts/Utilities.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var addSearchConditionHandler = '/Handlers/AdvancedQuery.ashx';
+var CardDatabaseSettings = 'CardDatabaseSettings';
+var SelectingCardAction = 'NavigatesToCard';
+var inlineCardSearchHandler = '/Handlers/InlineCardSearch.ashx';
+var autoCompleteGroupBy = 'None';
+var imageHandler = '/Handlers/Image.ashx';
+var cardSearchPage = '/Pages/Search/Default.aspx';
+var cardDetailsPage = '/Pages/Card/Details.aspx';
+var UtilitiesHandler = '/Handlers/RPCUtilities.ashx';
+
+var enableCardSearchAutoComplete = true;
+var enableHintText = true;
+var enableCardSearchAutoCompleteIfNameUnchecked = false;
+
+
+
+function ClientIDs() {}
+ClientIDs.MainForm = 'aspnetForm';
+ClientIDs.MainContainer = 'ctl00_ctl00_ctl00_MainContainer';
+ClientIDs.TopBannerAdvertisementCMS = 'ctl00_ctl00_ctl00_TopBannerAdvertisementCMS';
+ClientIDs.gathererIntroText = 'ctl00_ctl00_ctl00_gathererIntroText';
+ClientIDs.gathererWelcome = 'ctl00_ctl00_ctl00_gathererWelcome';
+ClientIDs.MainContent = 'ctl00_ctl00_ctl00_MainContent';
+ClientIDs.NavigationLinks = 'ctl00_ctl00_ctl00_MainContent_NavigationLinks';
+ClientIDs.NavigationAnchorsContainer = 'ctl00_ctl00_ctl00_MainContent_NavigationLinks_NavigationAnchorsContainer';
+ClientIDs.Simple = 'ctl00_ctl00_ctl00_MainContent_NavigationLinks_Simple';
+ClientIDs.Advanced = 'ctl00_ctl00_ctl00_MainContent_NavigationLinks_Advanced';
+ClientIDs.Random = 'ctl00_ctl00_ctl00_MainContent_NavigationLinks_Random';
+ClientIDs.Settings = 'ctl00_ctl00_ctl00_MainContent_NavigationLinks_Settings';
+ClientIDs.Language = 'ctl00_ctl00_ctl00_MainContent_NavigationLinks_Language';
+ClientIDs.Help = 'ctl00_ctl00_ctl00_MainContent_NavigationLinks_Help';
+ClientIDs.Configuration = 'ctl00_ctl00_ctl00_MainContent_NavigationLinks_Configuration';
+ClientIDs.SearchControls = 'ctl00_ctl00_ctl00_MainContent_SearchControls';
+ClientIDs.SearchBoxContainer = 'ctl00_ctl00_ctl00_MainContent_SearchControls_SearchBoxContainer';
+ClientIDs.CardSearchBoxParent = 'ctl00_ctl00_ctl00_MainContent_SearchControls_CardSearchBoxParent';
+ClientIDs.CardSearchBox = 'ctl00_ctl00_ctl00_MainContent_SearchControls_CardSearchBoxParent_CardSearchBox';
+ClientIDs.searchSubmitButton = 'ctl00_ctl00_ctl00_MainContent_SearchControls_searchSubmitButton';
+ClientIDs.SearchBoxResults = 'ctl00_ctl00_ctl00_MainContent_SearchControls_SearchBoxResults';
+ClientIDs.SearchBoxResultsContent = 'ctl00_ctl00_ctl00_MainContent_SearchControls_SearchBoxResultsContent';
+ClientIDs.AllResultsLink = 'ctl00_ctl00_ctl00_MainContent_SearchControls_AllResultsLink';
+ClientIDs.SearchSettings = 'ctl00_ctl00_ctl00_MainContent_SearchControls_SearchSettings';
+ClientIDs.Label1 = 'ctl00_ctl00_ctl00_MainContent_SearchControls_Label1';
+ClientIDs.searchControlsContainer = 'ctl00_ctl00_ctl00_MainContent_SearchControls_searchControlsContainer';
+ClientIDs.SearchCardName = 'ctl00_ctl00_ctl00_MainContent_SearchControls_SearchCardName';
+ClientIDs.Label2 = 'ctl00_ctl00_ctl00_MainContent_SearchControls_Label2';
+ClientIDs.SearchCardTypes = 'ctl00_ctl00_ctl00_MainContent_SearchControls_SearchCardTypes';
+ClientIDs.Label3 = 'ctl00_ctl00_ctl00_MainContent_SearchControls_Label3';
+ClientIDs.SearchCardText = 'ctl00_ctl00_ctl00_MainContent_SearchControls_SearchCardText';
+ClientIDs.Label4 = 'ctl00_ctl00_ctl00_MainContent_SearchControls_Label4';
+ClientIDs.SubContent = 'ctl00_ctl00_ctl00_MainContent_SubContent';
+ClientIDs.SubContentHeader = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContentHeader';
+ClientIDs.searchTermDisplay = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContentHeader_searchTermDisplay';
+ClientIDs.SubContentAnchors = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContentAnchors';
+ClientIDs.topPagingControlsContainer = 'ctl00_ctl00_ctl00_MainContent_SubContent_topPagingControlsContainer';
+ClientIDs.previousSearch = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_previousSearch';
+ClientIDs.prevSearchContainer = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_previousSearch_prevSearchContainer';
+ClientIDs.encodedSerializedParameters = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_previousSearch_encodedSerializedParameters';
+ClientIDs.filterSubmit = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_previousSearch_filterSubmit';
+ClientIDs.ajaxIndicatorImage = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_previousSearch_ajaxIndicatorImage';
+ClientIDs.extraBreaks = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_previousSearch_extraBreaks';
+ClientIDs.searchResultsContainer = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_searchResultsContainer';
+ClientIDs.Literal1 = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_Literal1';
+ClientIDs.sortDisplay = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_sortDisplay';
+ClientIDs.searchControls = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_searchControls';
+ClientIDs.sorter = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_sorter';
+ClientIDs.currentSort = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_sorter_currentSort';
+ClientIDs.Literal2 = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_sorter_Literal2';
+ClientIDs.sortBy = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_sorter_sortBy';
+ClientIDs.sortOrder = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_sorter_sortOrder';
+ClientIDs.addSort = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_sorter_addSort';
+ClientIDs.loadPreviousLink = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_sorter_loadPreviousLink';
+ClientIDs.switcher = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_switcher';
+ClientIDs.switchStandard = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_switcher_switchStandard';
+ClientIDs.switchView = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_switcher_switchView';
+ClientIDs.switchTextChecklist = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_switcher_switchTextChecklist';
+ClientIDs.switchVisualSpoiler = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_switcher_switchVisualSpoiler';
+ClientIDs.switchTextSpoiler = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_switcher_switchTextSpoiler';
+ClientIDs.Nicknames = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_Nicknames';
+ClientIDs.Nickname = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_Nickname';
+ClientIDs.listRepeater = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater';
+ClientIDs.cardTitle = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl00_cardTitle';
+ClientIDs.cardMana = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl00_cardMana';
+ClientIDs.cardType = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl00_cardType';
+ClientIDs.cardP = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl00_cardP';
+ClientIDs.cardT = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl00_cardT';
+ClientIDs.cardPrintings = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl00_cardPrintings';
+ClientIDs.DidYouMean = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_DidYouMean';
+ClientIDs.DidYouMeanText = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_DidYouMeanText';
+ClientIDs.DidYouMeanCandidates = 'ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_DidYouMeanCandidates';
+ClientIDs.bottomPagingControlsContainer = 'ctl00_ctl00_ctl00_MainContent_SubContent_bottomPagingControlsContainer';
+ClientIDs.loginLinkPlaceholder = 'ctl00_ctl00_ctl00_loginLinkPlaceholder';
+ClientIDs.CopyrightYear = 'ctl00_ctl00_ctl00_CopyrightYear';
+ClientIDs.RightBannerAdvertisement = 'ctl00_ctl00_ctl00_RightBannerAdvertisement';
+var textBoxHash = new Hash( { ctl00_ctl00_ctl00_MainContent_SearchControls_CardSearchBoxParent_CardSearchBox: 'Search Terms...' } );//]]>
+</script>
+
+<script src="../../Scripts/Constants.js" type="text/javascript"></script>
+<script src="../../Scripts/CardDatabase.js" type="text/javascript"></script>
+<script src="../../Scripts/AdvancedSearch.js" type="text/javascript"></script>
+<script src="../../Scripts/SearchControls.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+Event.observe(window, 'load', RetrieveCurrentSearchConditions);
+//]]>
+</script>
+
+<script src="/WebResource.axd?d=dvIBXUpcJFgWihJiquKUTKBo6v2RN1IuGxgb6gi81V0vTC2VFdZU4PaN4DlN6Bkg6nZYmgYMgtOfclRGDRygofnlW001&amp;t=634999200145474812" type="text/javascript"></script>
+<div>
+
+	<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+	<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWCgK9gMDHDAKw+7DyCgKKqPSlCQLIiJiWCgLgiMDeAwKBjNExAu3S+MYMAp6/k60OAtqnqaUNAv+705EBvakLYBxjDyqD+LyQd+/nJkkfl9g=" />
+</div>
+    <div style="width: 100%; height: 1px;">
+    </div>
+    <div id="ctl00_ctl00_ctl00_MainContainer" class="mainContainer">
+        <div class="leftContainer">
+            <div id="ctl00_ctl00_ctl00_TopBannerAdvertisementCMS" class="topBanner"><body docname="mtg_gatherer_banner_advertisement" doclang="ko" xmlPath="" useDate="2014-01-20">
+  <a href="http://www.wizards.com/Magic/tcg/events.aspx?x=events/magic/fnm" target="_blank">
+    <img src="http://media.wizards.com/images/magic/daily/ads/FNM2013/EN_FNM_M14_Banner_12.jpg" />
+  </a>
+</body></div>
+            <div class="background">
+                <div class="top">
+                    <div class="left">
+                    </div>
+                    <div class="middle">
+                    </div>
+                    <div class="right">
+                    </div>
+                </div>
+                <div class="center">
+                    <div class="middle">
+                        <div class="middleright">
+                            <div class="gathererContent">
+                                
+
+<div class="logo">
+    <a class="magic" href="http://www.magicthegathering.com"></a>
+	<a href="../Default.aspx" class="cardDatabase"></a>
+</div>
+
+                                
+                                
+    <div id="ctl00_ctl00_ctl00_MainContent_NavigationLinks_NavigationAnchorsContainer" class="searchcontrollinks">
+    <a href="../Default.aspx" id="ctl00_ctl00_ctl00_MainContent_NavigationLinks_Simple" class="current">Simple</a>
+    <a href="../Advanced.aspx" id="ctl00_ctl00_ctl00_MainContent_NavigationLinks_Advanced">Advanced</a>
+    <a href="../Card/Details.aspx?action=random" id="ctl00_ctl00_ctl00_MainContent_NavigationLinks_Random">Random Card</a>
+    <a href="../Settings.aspx" id="ctl00_ctl00_ctl00_MainContent_NavigationLinks_Settings">Settings</a>
+    <a href="../Language.aspx" id="ctl00_ctl00_ctl00_MainContent_NavigationLinks_Language">Language</a>
+    <a href="../Help.aspx" id="ctl00_ctl00_ctl00_MainContent_NavigationLinks_Help">Help</a>
+    
+</div>
+
+    
+    
+<div class="searchcontrols">
+    <div id="ctl00_ctl00_ctl00_MainContent_SearchControls_SearchBoxContainer" class="searchboxcontainertop">
+        
+
+<div class="textbox" id="ctl00_ctl00_ctl00_MainContent_SearchControls_CardSearchBoxParent" style=""><input name="ctl00$ctl00$ctl00$MainContent$SearchControls$CardSearchBoxParent$CardSearchBox" type="text" id="ctl00_ctl00_ctl00_MainContent_SearchControls_CardSearchBoxParent_CardSearchBox" class="textboxinput" onblur="SetCurrentControlBlur(event)" onfocus="SetCurrentControlFocus(event, this);" autocomplete="off" maxlength="50" /></div>
+    </div>
+    <div class="searchsubmit">
+        <input type="submit" name="ctl00$ctl00$ctl00$MainContent$SearchControls$searchSubmitButton" value="Search" id="ctl00_ctl00_ctl00_MainContent_SearchControls_searchSubmitButton" class="searchbutton" />
+    </div>
+    <br class="clear" />
+    <!-- Autocomplete Results -->
+    <div id="ctl00_ctl00_ctl00_MainContent_SearchControls_SearchBoxResults" class="searchresultscontainertop">
+        <div class="smallGreyBorder">
+            <b class="ct"><b></b></b>
+            <div class="simpleRoundedBoxTitleGrey">
+                Results
+            </div>
+            <div id="ctl00_ctl00_ctl00_MainContent_SearchControls_SearchBoxResultsContent" style="background-color: #b7b7b7;">
+            </div>
+            <div class="simpleRoundedBoxFooterGrey">
+                <span><a href="javascript:void(0);" id="ctl00_ctl00_ctl00_MainContent_SearchControls_AllResultsLink" class="autoCompleteAllResults">
+                    <span>All Results</span></a></span></div>
+            <b class="cc"><b></b></b>
+        </div>
+    </div>
+    <!-- /Autocomplete Results -->
+    <!-- Search Settings -->
+    <div id="ctl00_ctl00_ctl00_MainContent_SearchControls_SearchSettings" class="searchsettingsdisplaytop">
+        <div class="searchsettings">
+            <a href="javascript:void(0);" onclick="SaveVisibleArea(event, this, ClientIDs.searchControlsContainer, 'searchControlsContainer', false); return ToggleSearchSettings(event, this);"
+                class="expandedNode"><b><span id="ctl00_ctl00_ctl00_MainContent_SearchControls_Label1">using...</span></b></a>
+            <div id="ctl00_ctl00_ctl00_MainContent_SearchControls_searchControlsContainer">
+            <ul>
+                <li>
+                    <input name="ctl00$ctl00$ctl00$MainContent$SearchControls$SearchCardName" type="checkbox" id="ctl00_ctl00_ctl00_MainContent_SearchControls_SearchCardName" checked="checked" onclick="UpdateSimpleSearchFields" />
+                    <span id="ctl00_ctl00_ctl00_MainContent_SearchControls_Label2">Name</span></li>
+                <li>
+                    <input name="ctl00$ctl00$ctl00$MainContent$SearchControls$SearchCardTypes" type="checkbox" id="ctl00_ctl00_ctl00_MainContent_SearchControls_SearchCardTypes" onclick="UpdateSimpleSearchFields" />
+                    <span id="ctl00_ctl00_ctl00_MainContent_SearchControls_Label3">Types</span></li>
+                <li>
+                    <input name="ctl00$ctl00$ctl00$MainContent$SearchControls$SearchCardText" type="checkbox" id="ctl00_ctl00_ctl00_MainContent_SearchControls_SearchCardText" onclick="UpdateSimpleSearchFields" />
+                    <span id="ctl00_ctl00_ctl00_MainContent_SearchControls_Label4">Text</span></li>
+            </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /Search Settings -->
+</div>
+    <br class="clear" />
+    
+    
+    <div class="contentcontainer">
+        <div class="smallGreyBorder">
+            <b class="dt"><b></b></b>
+            <div class="simpleRoundedBoxTitleGreyTall">
+                <div class="contentTitle">
+                    
+Search:<span id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContentHeader_searchTermDisplay" style="font-size:0.8268332em;"><i>cmc = |> = 0|< = 0</i>  (13993)</span>
+
+                </div>
+                
+                
+                <div class="pagingcontrols">
+                    <div id="ctl00_ctl00_ctl00_MainContent_SubContent_topPagingControlsContainer" class="paging">
+                    <a href="/Pages/Search/Default.aspx?page=0&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D" style="text-decoration:underline;">1</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=1&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">2</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=2&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">3</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=3&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">4</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=4&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">5</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=5&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">6</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=6&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">7</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=7&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">8</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=8&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">9</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=9&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">10</a><a href="/Pages/Search/Default.aspx?page=1&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">&nbsp;&gt;</a><span>&nbsp;</span><a href="/Pages/Search/Default.aspx?page=139&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">&gt;&gt;</a></div>
+                </div>
+            </div>
+            
+    
+<div class="filterList">
+<div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_previousSearch_prevSearchContainer" class="smallGreyBorderBottom">
+    <a class="expandedNode" href="javascript:void(0);" onclick="SaveVisibleArea(event, this, 'filterControls', 'filterControls', false); return ToggleFilterOptions(event, this);">
+    <b><span>Search Criteria</span></b>
+    </a>
+    <div id="filterControls">
+        <input name="ctl00$ctl00$ctl00$MainContent$SubContent$SubContent$previousSearch$encodedSerializedParameters" type="hidden" id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_previousSearch_encodedSerializedParameters" />
+        
+        <div id="ajaxIndicator" class="indicator" style="display: none;">
+            <img id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_previousSearch_ajaxIndicatorImage" src="../../Images/ajax_indicator.gif" alt="Updating..." style="border-width:0px;" />
+            <span id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_previousSearch_Label2">Updating search parameters...</span>
+        </div>
+        
+        <div id="displayFilters" class="filters"><span id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_previousSearch_Label1">None yet.</span></div>
+    </div>
+</div>
+</div>
+    <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_searchResultsContainer">
+
+<div class="cardList">
+    <!-- Options Container -->
+    <div class="smallGreyBorderBottom">
+        &nbsp;<a class="expandedNode" onclick="SaveVisibleArea(event, this, 'searchControls', 'searchControls', false); return ToggleSearchOptions(event, this);"
+            href="javascript:void(0);"><b>Search Result Options</b></a>
+        
+        
+        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_searchControls" class="controls" style="display:block;">
+            
+
+<div class="sorter">
+    <span class="sortField">special (asc) <span><a class="remove" href="/Pages/Search/Default.aspx?output=compact&amp;action=advanced&amp;special=true&amp;cmc=|%3E%3d[0]|%3C%3d[0]&amp;removesortkey=special">x</a></span></span> > <span class="sortField">Name (asc) <span><a class="remove" href="/Pages/Search/Default.aspx?output=compact&amp;action=advanced&amp;special=true&amp;cmc=|%3E%3d[0]|%3C%3d[0]&amp;removesortkey=abc">x</a></span></span>
+    <ul class="opts">
+        <li>
+            Additional Sort:
+            
+            <select name="ctl00$ctl00$ctl00$MainContent$SubContent$SubContent$ctl00$sorter$sortBy" id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_sorter_sortBy">
+	<option value="cn">Collector's Number</option>
+	<option value="color">Color</option>
+	<option value="mana">Color Weight</option>
+	<option value="rating">Community Rating</option>
+	<option value="cmc">Converted Mana Cost</option>
+	<option value="abc">Name</option>
+	<option value="p">Power</option>
+	<option value="rarity">Rarity</option>
+	<option value="t">Toughness</option>
+</select>
+
+            <select name="ctl00$ctl00$ctl00$MainContent$SubContent$SubContent$ctl00$sorter$sortOrder" id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_sorter_sortOrder">
+	<option value="asc">Ascending</option>
+	<option value="desc">Descending</option>
+</select>
+            <input type="submit" name="ctl00$ctl00$ctl00$MainContent$SubContent$SubContent$ctl00$sorter$addSort" value="Add" id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_sorter_addSort" />
+        </li>
+    </ul>
+    <br />
+    <a href="/Pages/Advanced.aspx?action=advanced&cmc=|>=[0]|<=[0]&output=compact&special=true" id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_sorter_loadPreviousLink" class="refineSearchLink">Refine Search</a>
+</div>
+            
+    
+<div class="switcher">
+    <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_switcher_switchStandard" href="Default.aspx?output=standard&amp;action=advanced&amp;special=true&amp;cmc=%7c%3e%3d%5b0%5d%7c%3c%3d%5b0%5d">Switch to Standard</a>
+
+    <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_switcher_switchView" href="Default.aspx?output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7c%3e%3d%5b0%5d%7c%3c%3d%5b0%5d" style="text-decoration:underline;">Switch to Compact</a>
+
+    <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_switcher_switchTextChecklist" href="Default.aspx?output=checklist&amp;action=advanced&amp;special=true&amp;cmc=%7c%3e%3d%5b0%5d%7c%3c%3d%5b0%5d">Switch to Checklist</a>
+
+    <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_switcher_switchVisualSpoiler" href="Default.aspx?output=spoiler&amp;method=visual&amp;action=advanced&amp;special=true&amp;cmc=%7c%3e%3d%5b0%5d%7c%3c%3d%5b0%5d">Switch to Visual Spoiler</a>
+
+    <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_switcher_switchTextSpoiler" href="Default.aspx?output=spoiler&amp;method=text&amp;action=advanced&amp;special=true&amp;cmc=%7c%3e%3d%5b0%5d%7c%3c%3d%5b0%5d">Switch to Text Spoiler</a>  
+</div>
+
+        </div>
+        <div class="clear">
+        </div>
+        <b class="bb"><b></b></b>
+    </div>
+    <!-- End Options Container -->
+    
+    <table cellspacing="0" cellpadding="2" class="compact">
+        <tr class="headerRow">
+            <td class="headerCell">
+                Name
+            </td>
+            <td class="headerCell">
+                Cost
+            </td>
+            <td class="headerCell">
+                Type
+            </td>
+            <td class="headerCell">
+                P
+            </td>
+            <td class="headerCell">
+                T
+            </td>
+            <td class="headerCell">
+                Printings
+            </td>
+        </tr>
+        
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl00_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198073">Academy at Tolaria West</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Dominaria
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl00_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198073"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl01_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198090">Agyrem</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Ravnica
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl01_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198090"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl02_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226512">Akoum</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Zendikar
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl02_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226512"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl03_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226517">Aretopolis</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Kephalai
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl03_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226517"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl04_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226526">Astral Arena</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Kolbahan
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl04_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226526"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl05_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198099">Bant</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Alara
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl05_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198099"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl06_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226539">Bloodhill Bastion</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Equilor
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl06_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226539"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl07_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226509">Chaotic Æther</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Phenomenon
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl07_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226509"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl08_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198077">Cliffside Market</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Mercadia
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl08_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198077"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl09_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226527">Edge of Malacol</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Belenon
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl09_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226527"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl10_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198109">Eloren Wilds</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Shandalar
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl10_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198109"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl11_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198066">Feeding Grounds</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Muraganda
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl11_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198066"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl12_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198097">Fields of Summer</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Moag
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl12_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198097"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl13_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226536">Furnace Layer</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — New Phyrexia
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl13_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226536"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl14_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226542">Gavony</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Innistrad
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl14_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226542"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl15_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226535">Glen Elendra</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Lorwyn
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl15_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226535"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl16_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198068">Glimmervoid Basin</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Mirrodin
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl16_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198068"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl17_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198087">Goldmeadow</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Lorwyn
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl17_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198087"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl18_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226554">Grand Ossuary</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Ravnica
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl18_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226554"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl19_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198071">Grixis</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Alara
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl19_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198071"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl20_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226541">Grove of the Dreampods</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Fabacin
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl20_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226541"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl21_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226544">Hedron Fields of Agadeem</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Zendikar
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl21_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226544"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl22_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198084">Immersturm</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Valla
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl22_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198084"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl23_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226549">Interplanar Tunnel</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Phenomenon
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl23_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226549"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl24_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198096">Isle of Vesuva</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Dominaria
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl24_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198096"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl25_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198065">Izzet Steam Maze</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Ravnica
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl25_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198065"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl26_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226551">Jund</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Alara
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl26_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226551"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl27_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226537">Kessig</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Innistrad
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl27_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226537"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl28_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226534">Kharasha Foothills</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Mongseng
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl28_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226534"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl29_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226523">Kilnspire District</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Ravnica
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl29_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226523"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl30_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198100">Krosa</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Dominaria
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl30_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198100"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl31_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226532">Lair of the Ashen Idol</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Azgol
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl31_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226532"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl32_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198105">Lethe Lake</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Arkhos
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl32_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198105"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl33_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198107">Llanowar</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Dominaria
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl33_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198107"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl34_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198078">Minamo</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Kamigawa
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl34_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198078"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl35_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226514">Morphic Tide</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Phenomenon
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl35_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226514"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl36_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226515">Mount Keralia</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Regatha
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl36_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226515"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl37_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198074">Murasa</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Zendikar
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl37_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198074"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl38_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226520">Mutual Epiphany</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Phenomenon
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl38_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226520"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl39_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198070">Naar Isle</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Wildfire
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl39_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198070"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl40_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198103">Naya</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Alara
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl40_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198103"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl41_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226543">Nephalia</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Innistrad
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl41_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226543"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl42_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226540">Norn's Dominion</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — New Phyrexia
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl42_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226540"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl43_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226513">Onakke Catacomb</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Shandalar
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl43_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226513"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl44_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226524">Orochi Colony</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Kamigawa
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl44_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226524"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl45_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226507">Orzhova</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Ravnica
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl45_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226507"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl46_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198095">Otaria</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Dominaria
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl46_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198095"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl47_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198064">Panopticon</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Mirrodin
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl47_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198064"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl48_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226545">Planewide Disaster</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Phenomenon
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl48_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226545"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl49_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198080">Pools of Becoming</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Bolas’s Meditation Realm
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl49_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198080"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl50_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226552">Prahv</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Ravnica
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl50_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226552"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl51_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226518">Quicksilver Sea</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Mirrodin
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl51_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226518"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl52_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198076">Raven's Run</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Shadowmoor
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl52_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198076"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl53_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226508">Reality Shaping</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Phenomenon
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl53_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226508"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl54_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198079">Sanctum of Serra</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Serra’s Realm
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl54_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198079"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl55_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198111">Sea of Sand</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Rabiah
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl55_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198111"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl56_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226538">Selesnya Loft Gardens</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Ravnica
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl56_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226538"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl57_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198086">Shiv</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Dominaria
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl57_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198086"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl58_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198101">Skybreen</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Kaldheim
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl58_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198101"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl59_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198075">Sokenzan</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Kamigawa
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl59_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198075"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl60_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226546">Spatial Merging</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Phenomenon
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl60_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226546"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl61_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226521">Stairs to Infinity</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Xerex
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl61_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226521"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=R" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl62_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226555">Stensia</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Innistrad
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl62_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226555"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl63_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198063">Stronghold Furnace</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Rath
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl63_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198063"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl64_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226533">Takenuma</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Kamigawa
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl64_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226533"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl65_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226525">Talon Gates</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Dominaria
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl65_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226525"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl66_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198069">Tazeem</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Zendikar
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl66_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198069"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=S" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl67_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198098">The Æther Flues</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Iquatana
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl67_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198098"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl68_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198083">The Dark Barony</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Ulgrotha
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl68_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198083"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl69_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198092">The Eon Fog</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Equilor
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl69_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198092"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl70_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198102">The Fourth Sphere</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Phyrexia
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl70_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198102"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl71_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198088">The Great Forest</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Lorwyn
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl71_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198088"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl72_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198067">The Hippodrome</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Segovia
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl72_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198067"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl73_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198062">The Maelstrom</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Alara
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl73_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198062"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl74_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226528">The Zephyr Maze</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Kyneth
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl74_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226528"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl75_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226556">Time Distortion</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Phenomenon
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl75_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226556"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl76_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226529">Trail of the Mage-Rings</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Vryn
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl76_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226529"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl77_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226553">Truga Jungle</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Ergamon
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl77_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226553"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl78_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198085">Turri Island</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Ir
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl78_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198085"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl79_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198110">Undercity Reaches</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Ravnica
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl79_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198110"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl80_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198081">Velis Vel</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Lorwyn
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl80_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=198081"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HOP&amp;size=small&amp;rarity=C" alt="HOP" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl81_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226510">Windriddle Palaces</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Plane  — Belenon
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl81_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=226510"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PC2&amp;size=small&amp;rarity=C" alt="PC2" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl82_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=73935">"Ach! Hans, Run!"</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=2&amp;type=symbol" alt="2" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=R&amp;type=symbol" alt="Red" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=R&amp;type=symbol" alt="Red" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=G&amp;type=symbol" alt="Green" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=G&amp;type=symbol" alt="Green" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Enchantment
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl82_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=73935"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=UNH&amp;size=small&amp;rarity=R" alt="UNH" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl83_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=74252">_____</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=1&amp;type=symbol" alt="1" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=U&amp;type=symbol" alt="Blue" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Creature — Shapeshifter
+                    </td>
+                    <td class="numerical top">
+                        1
+                    </td>
+                    <td class="numerical top">
+                        1
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl83_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=74252"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=UNH&amp;size=small&amp;rarity=U" alt="UNH" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl84_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=212578">A Display of My Dark Power</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Scheme
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl84_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=212578"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=ARC&amp;size=small&amp;rarity=C" alt="ARC" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl85_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=4635">Abandon Hope</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=X&amp;type=symbol" alt="Variable Colorless" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=1&amp;type=symbol" alt="1" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=B&amp;type=symbol" alt="Black" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Sorcery
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl85_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=4635"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=TE&amp;size=small&amp;rarity=U" alt="TE" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl86_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=31761">Abandoned Outpost</a>
+                    </td>
+                    <td class="mana top">
+                        
+                    </td>
+                    <td class="type top">
+                        Land
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl86_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=31761"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=OD&amp;size=small&amp;rarity=C" alt="OD" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl87_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=222911">Abattoir Ghoul</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=3&amp;type=symbol" alt="3" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=B&amp;type=symbol" alt="Black" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Creature  — Zombie
+                    </td>
+                    <td class="numerical top">
+                        3
+                    </td>
+                    <td class="numerical top">
+                        2
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl87_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=222911"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=ISD&amp;size=small&amp;rarity=U" alt="ISD" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl88_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=184585">Abbey Gargoyles</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=2&amp;type=symbol" alt="2" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=W&amp;type=symbol" alt="White" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=W&amp;type=symbol" alt="White" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=W&amp;type=symbol" alt="White" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Creature  — Gargoyle
+                    </td>
+                    <td class="numerical top">
+                        3
+                    </td>
+                    <td class="numerical top">
+                        4
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl88_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=184585"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=ME2&amp;size=small&amp;rarity=U" alt="ME2" style="border-width:0px;" /></a><a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=4098"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=5E&amp;size=small&amp;rarity=U" alt="5E" style="border-width:0px;" /></a><a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=3010"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HM&amp;size=small&amp;rarity=U" alt="HM" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl89_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=235595">Abbey Griffin</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=3&amp;type=symbol" alt="3" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=W&amp;type=symbol" alt="White" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Creature  — Griffin
+                    </td>
+                    <td class="numerical top">
+                        2
+                    </td>
+                    <td class="numerical top">
+                        2
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl89_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=235595"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=ISD&amp;size=small&amp;rarity=C" alt="ISD" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl90_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=3012">Abbey Matron</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=2&amp;type=symbol" alt="2" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=W&amp;type=symbol" alt="White" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Creature  — Human Cleric
+                    </td>
+                    <td class="numerical top">
+                        1
+                    </td>
+                    <td class="numerical top">
+                        3
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl90_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=3012"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HM&amp;size=small&amp;rarity=C" alt="HM" style="border-width:0px;" /></a><a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=3011"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=HM&amp;size=small&amp;rarity=C" alt="HM" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl91_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=14526">Abduction</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=2&amp;type=symbol" alt="2" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=U&amp;type=symbol" alt="Blue" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=U&amp;type=symbol" alt="Blue" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Enchantment  — Aura
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl91_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=14526"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=6E&amp;size=small&amp;rarity=U" alt="6E" style="border-width:0px;" /></a><a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=4476"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=WL&amp;size=small&amp;rarity=U" alt="WL" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl92_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=4563">Abeyance</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=1&amp;type=symbol" alt="1" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=W&amp;type=symbol" alt="White" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Instant
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl92_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=4563"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=WL&amp;size=small&amp;rarity=R" alt="WL" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl93_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=373661">Abhorrent Overlord</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=5&amp;type=symbol" alt="5" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=B&amp;type=symbol" alt="Black" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=B&amp;type=symbol" alt="Black" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Creature  — Demon
+                    </td>
+                    <td class="numerical top">
+                        6
+                    </td>
+                    <td class="numerical top">
+                        6
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl93_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=373661"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=THS&amp;size=small&amp;rarity=R" alt="THS" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl94_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=4477">Abjure</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=U&amp;type=symbol" alt="Blue" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Instant
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl94_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=4477"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=WL&amp;size=small&amp;rarity=C" alt="WL" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl95_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=222765">Abolish</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=1&amp;type=symbol" alt="1" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=W&amp;type=symbol" alt="White" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=W&amp;type=symbol" alt="White" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Instant
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl95_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=222765"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=DDF&amp;size=small&amp;rarity=U" alt="DDF" style="border-width:0px;" /></a><a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=24561"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=PR&amp;size=small&amp;rarity=U" alt="PR" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl96_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=2084">Abomination</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=3&amp;type=symbol" alt="3" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=B&amp;type=symbol" alt="Black" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=B&amp;type=symbol" alt="Black" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Creature  — Horror
+                    </td>
+                    <td class="numerical top">
+                        2
+                    </td>
+                    <td class="numerical top">
+                        6
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl96_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=2084"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=4E&amp;size=small&amp;rarity=U" alt="4E" style="border-width:0px;" /></a><a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=1427"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=LE&amp;size=small&amp;rarity=U" alt="LE" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl97_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=4505">Aboroth</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=4&amp;type=symbol" alt="4" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=G&amp;type=symbol" alt="Green" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=G&amp;type=symbol" alt="Green" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Creature  — Elemental
+                    </td>
+                    <td class="numerical top">
+                        9
+                    </td>
+                    <td class="numerical top">
+                        9
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl97_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=4505"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=WL&amp;size=small&amp;rarity=R" alt="WL" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem evenItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl98_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=31821">Aboshan, Cephalid Emperor</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=4&amp;type=symbol" alt="4" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=U&amp;type=symbol" alt="Blue" align="absbottom" /><img src="/Handlers/Image.ashx?size=small&amp;name=U&amp;type=symbol" alt="Blue" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Legendary Creature  — Cephalid
+                    </td>
+                    <td class="numerical top">
+                        3
+                    </td>
+                    <td class="numerical top">
+                        3
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl98_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=31821"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=OD&amp;size=small&amp;rarity=R" alt="OD" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+                <tr class="cardItem oddItem">
+                    <td class="name top">
+                        <a id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl99_cardTitle" onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=29728">Aboshan's Desire</a>
+                    </td>
+                    <td class="mana top">
+                        <img src="/Handlers/Image.ashx?size=small&amp;name=U&amp;type=symbol" alt="Blue" align="absbottom" />
+                    </td>
+                    <td class="type top">
+                        Enchantment  — Aura
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="numerical top">
+                        
+                    </td>
+                    <td class="printings top">
+                        <div id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl99_cardPrintings">
+	<a onclick="return CardLinkAction(event, this, 'SameWindow');" href="../Card/Details.aspx?multiverseid=29728"><img src="../../Handlers/Image.ashx?type=symbol&amp;set=OD&amp;size=small&amp;rarity=C" alt="OD" style="border-width:0px;" /></a>
+</div>
+                    </td>
+                </tr>
+            
+    </table>
+</div>
+</div>
+    
+    
+
+            <div class="clear"></div>
+            <div id="ctl00_ctl00_ctl00_MainContent_SubContent_bottomPagingControlsContainer">
+            <div class="pagingControls"><a href="/Pages/Search/Default.aspx?page=0&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D" style="text-decoration:underline;">1</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=1&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">2</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=2&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">3</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=3&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">4</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=4&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">5</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=5&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">6</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=6&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">7</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=7&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">8</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=8&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">9</a><span>,&nbsp;</span><a href="/Pages/Search/Default.aspx?page=9&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">10</a><a href="/Pages/Search/Default.aspx?page=1&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">&nbsp;&gt;</a><span>&nbsp;</span><a href="/Pages/Search/Default.aspx?page=139&amp;output=compact&amp;action=advanced&amp;special=true&amp;cmc=%7C%3E%3d%5B0%5D%7C%3C%3d%5B0%5D">&gt;&gt;</a></div></div>
+            <b class="dd"><b></b></b>
+        </div>
+    </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div class="left">
+                        </div>
+                        <div class="middle">
+                        </div>
+                        <div class="right">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <a href="http://www.magicthegathering.com">magicthegathering.com</a>&nbsp;&nbsp;
+                <a href="http://www.wizards.com/magic/Digital/MagicOnline.aspx">Magic: The Gathering
+                    Online</a>&nbsp;&nbsp; <a href="../Settings.aspx"><span>Settings</span></a>&nbsp;&nbsp;
+                <a href="../Language.aspx"><span id="ctl00_ctl00_ctl00_Label1">Language</span></a>&nbsp;&nbsp; <a href="../Help.aspx"><span id="ctl00_ctl00_ctl00_Label2">Help</span></a>&nbsp;|&nbsp;
+                    <a href="../Login.aspx?returnurl=%2fPages%2fSearch%2fDefault.aspx%3foutput%3dcompact%26action%3dadvanced%26special%3dtrue%26cmc%3d%257C%253E%253d%255B0%255D%257C%253C%253d%255B0%255D">Login</a>
+                <div class="wizardsFooterSection">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &copy; 1995 - 2014 <a href="http://www.wizards.com">Wizards of the Coast</a> LLC,
+                    a subsidiary of Hasbro, Inc. All Rights Reserved.
+                </div>
+                <br />
+                <span class="smalldate"></span>
+            </div>
+        </div>
+        <div class="rightContainer">
+            
+        </div>
+    </div>
+    
+
+<script type="text/javascript">
+//<![CDATA[
+WebForm_AutoFocus('ctl00_ctl00_ctl00_MainContent_SearchControls_CardSearchBoxParent_CardSearchBox');//]]>
+</script>
+</form>
+</body>
+</html>

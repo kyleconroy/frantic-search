@@ -47,7 +47,15 @@ func queryall(n *html.Node, selectors []string) []*html.Node {
 
 	if n.Type == html.ElementNode {
 		if strings.HasPrefix(selector, ".") {
-			match = ("." + Attr(n, "class")) == selector
+			rule := strings.Replace(selector, ".", "", 1)
+
+			classes := strings.Split(Attr(n, "class"), " ")
+
+			for _, class := range classes {
+				if strings.TrimSpace(class) == rule {
+					match = true
+				}
+			}
 		} else if strings.HasPrefix(selector, "#") {
 			match = ("#" + Attr(n, "id")) == selector
 		} else {
@@ -81,8 +89,17 @@ func query(n *html.Node, selectors []string) (*html.Node, bool) {
 	selector := selectors[0]
 
 	if n.Type == html.ElementNode {
+		// XXX An element can have multiple classes
 		if strings.HasPrefix(selector, ".") {
-			match = ("." + Attr(n, "class")) == selector
+			rule := strings.Replace(selector, ".", "", 1)
+
+			classes := strings.Split(Attr(n, "class"), " ")
+
+			for _, class := range classes {
+				if strings.TrimSpace(class) == rule {
+					match = true
+				}
+			}
 		} else if strings.HasPrefix(selector, "#") {
 			match = ("#" + Attr(n, "id")) == selector
 		} else {
