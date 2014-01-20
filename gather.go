@@ -381,10 +381,14 @@ func ParseCards(page io.Reader, multiverseid int) ([]Card, error) {
 		prefixA = prefixLeft
 		prefixB = prefixRight
 		special = "split"
-	} else if _, found := Find(doc, prefixFront+"cardImage"); found {
+	} else if _, found := Find(doc, prefixBack+"colorIndicatorRow"); found {
 		prefixA = prefixFront
 		prefixB = prefixBack
 		special = "double-faced"
+	} else if _, found := Find(doc, prefixFront+"cardImage"); found {
+		prefixA = prefixFront
+		prefixB = prefixBack
+		special = "flip"
 	}
 
 	if special != "" {

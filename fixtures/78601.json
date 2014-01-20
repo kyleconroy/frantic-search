@@ -1,0 +1,23 @@
+{
+  "id": "fa386836871885b78b970088e335dcb8",
+  "name": "Kenzo the Hardhearted",
+  "mana_cost": "{W}",
+  "converted_cost": 1,
+  "types": ["legendary", "creature"],
+  "subtypes": ["human", "samurai"],
+  "special": "flip",
+  "partner_card": "6663a6d38a2a49015ae1d7cbf4e922eb",
+  "power": "3",
+  "toughness": "4",
+  "rules_text": [
+    "Double strike; bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)"
+  ],
+  "editions": [{
+    "rarity": "uncommon",
+    "number": "2b",
+    "multiverse_id": 78600,
+    "set": "Champions of Kamigawa",
+    "flavor_text": [],
+    "artist": "Mark Zug"
+  }]
+}

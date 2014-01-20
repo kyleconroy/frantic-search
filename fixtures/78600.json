@@ -1,0 +1,21 @@
+{
+  "id": "6663a6d38a2a49015ae1d7cbf4e922eb",
+  "name": "Bushi Tenderfoot",
+  "mana_cost": "{W}",
+  "converted_cost": 1,
+  "types": ["creature"],
+  "subtypes": ["human", "soldier"],
+  "special": "flip",
+  "partner_card": "fa386836871885b78b970088e335dcb8",
+  "rules_text": ["When a creature dealt damage by Bushi Tenderfoot this turn dies, flip Bushi Tenderfoot."],
+  "power": "1",
+  "toughness": "1",
+  "editions": [{
+    "rarity": "uncommon",
+    "number": "2a",
+    "multiverse_id": 78600,
+    "set": "Champions of Kamigawa",
+    "flavor_text": [],
+    "artist": "Mark Zug"
+  }]
+}
