@@ -2,6 +2,7 @@ package main
 
 import (
 	"code.google.com/p/go.net/html"
+    "sort"
 	"crypto/md5"
 	"encoding/json"
 	"flag"
@@ -17,8 +18,8 @@ import (
 
 const (
 	prefixSingle = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_"
-	prefixFront   = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl07_"
-	prefixBack  = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl08_"
+	prefixFront  = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl07_"
+	prefixBack   = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl08_"
 	prefixLeft   = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl09_"
 	prefixRight  = "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl10_"
 	gathererUrl  = "http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=%d"
@@ -27,6 +28,21 @@ const (
 
 type Deckbox struct {
 	Cards []Card `json:"cards"`
+}
+
+func (d *Deckbox) Sort() {
+}
+
+func (d *Deckbox) Len() int {
+	return len(d.Cards)
+}
+
+func (d *Deckbox) Swap(i, j int) {
+	d.Cards[i], d.Cards[j] = d.Cards[j], d.Cards[i]
+}
+
+func (d *Deckbox) Less(i, j int) bool {
+	return d.Cards[i].Name < d.Cards[j].Name
 }
 
 func (d Deckbox) IdSet() map[string]bool {
@@ -452,7 +468,8 @@ func ParseSearch(page io.Reader) ([]SearchResult, error) {
 func main() {
 	flag.Parse()
 
-	path := flag.Arg(0)
+	cmd := flag.Arg(0)
+	path := flag.Arg(1)
 
 	blob, err := ioutil.ReadFile(path)
 
@@ -470,6 +487,24 @@ func main() {
 	}
 
 	set := box.IdSet()
+
+	if cmd == "sort" {
+		sort.Sort(&box)
+
+		blob, err := json.Marshal(box)
+
+		if err != nil {
+			log.Fatalf("Couldn't marshal card database to JSON: %s", err)
+		}
+
+		err = ioutil.WriteFile(path, blob, 0644)
+		return
+	}
+
+	if cmd != "fetch" {
+		log.Fatal("The only supported subcommands are fetch and sort")
+	}
+
 	// Create a set of all multiverse ids I've already seen
 	// Create a Card channel and a int channel
 	cardChan := make(chan Card)
