@@ -297,7 +297,7 @@ func extractResultSize(n *html.Node) int {
 
 func extractMultiverseIds(n *html.Node, id int, pattern string) []int {
 	ids := []int{}
-    found := false
+	found := false
 
 	for _, a := range FindAll(n, pattern) {
 
@@ -314,16 +314,16 @@ func extractMultiverseIds(n *html.Node, id int, pattern string) []int {
 			continue
 		}
 
-        if multiverseid == id {
-                found = true
-        }
+		if multiverseid == id {
+			found = true
+		}
 
 		ids = append(ids, multiverseid)
 	}
 
-    if !found {
+	if !found {
 		ids = append(ids, id)
-}
+	}
 
 	sort.Ints(ids)
 	return ids
@@ -359,13 +359,13 @@ func parseCard(doc *html.Node, prefix string) Card {
 	// Gross?
 	ids := extractMultiverseIds(doc, edition.MultiverseId, prefix+"otherSetsValue a")
 
-		for _, id := range ids {
-			if edition.MultiverseId == id {
-				card.Editions = append(card.Editions, edition)
-			} else {
-				card.Editions = append(card.Editions, Edition{MultiverseId: id})
-			}
+	for _, id := range ids {
+		if edition.MultiverseId == id {
+			card.Editions = append(card.Editions, edition)
+		} else {
+			card.Editions = append(card.Editions, Edition{MultiverseId: id})
 		}
+	}
 
 	return card
 }

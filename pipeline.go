@@ -216,7 +216,7 @@ func processCards(multiverseChan chan int, cardChan chan Card) {
 
 // One go rotine pulls cards off the channel, adds them to the database
 // And flushes it to memory
-func processDeckbox(path string, box Deckbox, cardChan chan Card) {
+func saveCards(path string, box Deckbox, cardChan chan Card) {
 	count := 0
 	for {
 		card, ok := <-cardChan
@@ -250,6 +250,15 @@ func processDeckbox(path string, box Deckbox, cardChan chan Card) {
 	}
 }
 
+func findEmptyEditions(box Deckbox, multiverseChan chan int) {
+}
+
+func processEditions(multiverseChan chan int, editionChan chan Edition) {
+}
+
+func saveEditions(path string, box Deckbox, editionChan chan Edition) {
+}
+
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
@@ -264,11 +273,18 @@ func main() {
 	}
 
 	cardChannel := make(chan Card)
-	multiverseChannel := make(chan int, 15000)
+	editionChannel := make(chan Edition)
+	multiverseCardChannel := make(chan int, 15000)
+	multiverseEditionChannel := make(chan int, 15000)
 	pageChannel := make(chan int, 200)
 
-	go processSearchResults(box.IdSet(), pageChannel, multiverseChannel)
-	go processCards(multiverseChannel, cardChannel)
-	processDeckbox(path, box, cardChannel)
+	// Fetch all the cards
+	go processSearchResults(box.IdSet(), pageChannel, multiverseEditionChannel)
+	go processCards(multiverseCardChannel, cardChannel)
+	saveCards(path, box, cardChannel)
 
+	// Fetch all the editions
+	go findEmptyEditions(box, multiverseEditionChannel)
+	go processEditions(multiverseEditionChannel, editionChannel)
+	saveEditions(path, box, editionChannel)
 }
