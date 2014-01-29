@@ -2,14 +2,10 @@ package main
 
 import (
 	"code.google.com/p/go.net/html"
-    "sort"
 	"crypto/md5"
-	"encoding/json"
-	"flag"
 	"fmt"
 	"io"
-	"io/ioutil"
-	"log"
+	"math"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -25,71 +21,6 @@ const (
 	gathererUrl  = "http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=%d"
 	searchUrl    = "http://gatherer.wizards.com/Pages/Search/Default.aspx?output=compact&action=advanced&special=true&cmc=|>%%3d[0]|<%%3d[0]&page=%d"
 )
-
-type Deckbox struct {
-	Cards []Card `json:"cards"`
-}
-
-func (d *Deckbox) Sort() {
-}
-
-func (d *Deckbox) Len() int {
-	return len(d.Cards)
-}
-
-func (d *Deckbox) Swap(i, j int) {
-	d.Cards[i], d.Cards[j] = d.Cards[j], d.Cards[i]
-}
-
-func (d *Deckbox) Less(i, j int) bool {
-	return d.Cards[i].Name < d.Cards[j].Name
-}
-
-func (d Deckbox) IdSet() map[string]bool {
-	set := map[string]bool{}
-
-	for _, card := range d.Cards {
-		set[card.Id] = true
-	}
-
-	return set
-}
-
-func (d Deckbox) MultiverseSet() map[int]bool {
-	set := map[int]bool{}
-
-	for _, card := range d.Cards {
-		for _, edition := range card.Editions {
-			set[edition.MultiverseId] = true
-		}
-	}
-
-	return set
-}
-
-func (d *Deckbox) Add(card Card) error {
-	if len(card.Editions) == 0 {
-		return fmt.Errorf("%s has no editions", card.Name)
-	}
-
-	for i, c := range d.Cards {
-		if c.Id == card.Id {
-			edition := card.Editions[0]
-
-			for _, e := range c.Editions {
-				if e.MultiverseId == edition.MultiverseId {
-					return nil
-				}
-			}
-
-			d.Cards[i].Editions = append(card.Editions, edition)
-			return nil
-		}
-	}
-
-	d.Cards = append(d.Cards, card)
-	return nil
-}
 
 type Card struct {
 	Name           string    `json:"name"`
@@ -353,6 +284,30 @@ func extractText(n *html.Node, pattern string) []string {
 	return rules
 }
 
+func extractResultSize(n *html.Node) int {
+	div, found := Find(n, "#ctl00_ctl00_ctl00_MainContent_SubContent_SubContentHeader_searchTermDisplay")
+
+	if !found {
+		return 0
+	}
+
+	parts := strings.Split(Flatten(div), "(")
+
+	if len(parts) != 2 {
+		return 0
+	}
+
+	result := strings.Replace(parts[1], ")", "", 1)
+
+	count, err := strconv.Atoi(result)
+
+	if err != nil {
+		return 0
+	}
+
+	return count
+}
+
 func hash(in string) string {
 	h := md5.New()
 	io.WriteString(h, in)
@@ -382,6 +337,23 @@ func parseCard(doc *html.Node, prefix string) Card {
 
 	card.Editions = append(card.Editions, edition)
 	return card
+}
+
+func FetchCards(multiverseId int) ([]Card, error) {
+	url := fmt.Sprintf(gathererUrl, multiverseId)
+	resp, err := http.Get(url)
+
+	if err != nil {
+		return []Card{}, err
+	}
+
+	cards, err := ParseCards(resp.Body, multiverseId)
+
+	if err != nil {
+		return []Card{}, err
+	}
+
+    return cards, nil
 }
 
 func ParseCards(page io.Reader, multiverseid int) ([]Card, error) {
@@ -428,13 +400,40 @@ type SearchResult struct {
 	MultiverseId int
 }
 
-func ParseSearch(page io.Reader) ([]SearchResult, error) {
+func TotalPages() int {
+        _, total, err := FetchSearch(0)
+
+	if err != nil {
+		return 0
+	}
+	return int(math.Ceil(float64(total) / float64(100)))
+}
+
+func FetchSearch(page int) ([]SearchResult, int, error) {
+	url := fmt.Sprintf(searchUrl, 0)
+
+	resp, err := http.Get(url)
+
+	if err != nil {
+		return []SearchResult{}, 0, err
+	}
+
+	results, total, err := ParseSearch(resp.Body)
+
+	if err != nil {
+		return []SearchResult{}, 0, err
+	}
+
+	return results, total, nil
+}
+
+func ParseSearch(page io.Reader) ([]SearchResult, int, error) {
 	doc, err := html.Parse(page)
 
 	results := []SearchResult{}
 
 	if err != nil {
-		return results, err
+		return results, 0, err
 	}
 
 	for _, a := range FindAll(doc, ".cardItem .name a") {
@@ -442,7 +441,7 @@ func ParseSearch(page io.Reader) ([]SearchResult, error) {
 		url, err := url.Parse(Attr(a, "href"))
 
 		if err != nil {
-			return results, err
+			return results, 0, err
 		}
 
 		mid := url.Query().Get("multiverseid")
@@ -450,7 +449,7 @@ func ParseSearch(page io.Reader) ([]SearchResult, error) {
 		multiverseid, err := strconv.Atoi(mid)
 
 		if err != nil {
-			return results, err
+			return results, 0, err
 		}
 
 		name := strings.TrimSpace(Flatten(a))
@@ -462,143 +461,5 @@ func ParseSearch(page io.Reader) ([]SearchResult, error) {
 		})
 	}
 
-	return results, nil
-}
-
-func main() {
-	flag.Parse()
-
-	cmd := flag.Arg(0)
-	path := flag.Arg(1)
-
-	blob, err := ioutil.ReadFile(path)
-
-	if err != nil {
-		log.Println("Couldn't open file, starting from scratch")
-		blob = []byte(`{"cards": []}`)
-	}
-
-	var box Deckbox
-
-	err = json.Unmarshal(blob, &box)
-
-	if err != nil {
-		log.Fatalf("Can't decode a JSON object in %s", path)
-	}
-
-	set := box.IdSet()
-
-	if cmd == "sort" {
-		sort.Sort(&box)
-
-		blob, err := json.Marshal(box)
-
-		if err != nil {
-			log.Fatalf("Couldn't marshal card database to JSON: %s", err)
-		}
-
-		err = ioutil.WriteFile(path, blob, 0644)
-		return
-	}
-
-	if cmd != "fetch" {
-		log.Fatal("The only supported subcommands are fetch and sort")
-	}
-
-	// Create a set of all multiverse ids I've already seen
-	// Create a Card channel and a int channel
-	cardChan := make(chan Card)
-	multiverseChan := make(chan int, 1000)
-
-	// Start a routines to count ids
-	go func() {
-		// Fetch
-		page := 0
-
-		for {
-			if page > 140 {
-				return
-			}
-			log.Printf("Parsing page %d", page)
-
-			// Generate Url
-			url := fmt.Sprintf(searchUrl, page)
-
-			resp, err := http.Get(url)
-
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			results, err := ParseSearch(resp.Body)
-
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			for _, result := range results {
-				if !set[result.Id] {
-					multiverseChan <- result.MultiverseId
-				}
-			}
-
-			page += 1
-		}
-	}()
-
-	// Start N go routines to go fetch and parse cards
-	for j := 0; j < 10; j++ {
-		go func() {
-			for {
-				id := <-multiverseChan
-
-				url := fmt.Sprintf(gathererUrl, id)
-				resp, err := http.Get(url)
-
-				if err != nil {
-					log.Println(err)
-					continue
-				}
-
-				cards, _ := ParseCards(resp.Body, id)
-
-				for _, card := range cards {
-
-					if card.Name == "" {
-						log.Printf("ERROR Couldn't parse card for id: %d", id)
-						continue
-					}
-
-					cardChan <- card
-				}
-			}
-		}()
-	}
-
-	// One go rotine pulls cards off the channel, adds them to the database
-	// And flushes it to memory
-	for {
-		card := <-cardChan
-
-		err := box.Add(card)
-
-		if err != nil {
-			log.Printf("ERROR Couldn't add card to database %s", card.Name)
-			continue
-		}
-
-		log.Printf("Added %s", card.Name)
-
-		blob, err := json.Marshal(box)
-
-		if err != nil {
-			log.Fatalf("Couldn't marshal card database to JSON: %s", err)
-		}
-
-		err = ioutil.WriteFile(path, blob, 0644)
-
-		if err != nil {
-			log.Fatalf("Couldn't write card database: %s", err)
-		}
-	}
+	return results, extractResultSize(doc), nil
 }

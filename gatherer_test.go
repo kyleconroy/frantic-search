@@ -19,14 +19,18 @@ var cards = []int{
 func TestSearchResults(t *testing.T) {
 	blob, _ := os.Open("fixtures/search.html")
 
-	results, err := ParseSearch(blob)
+	results, total, err := ParseSearch(blob)
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
+	if total != 13993 {
+		t.Errorf("Total search results should be 13993, not %d", total)
+	}
+
 	if len(results) != 100 {
-		t.Fatalf("Search results should have 1, not %d", len(results))
+		t.Errorf("Search results should have 1, not %d", len(results))
 	}
 
 	card := results[0]
@@ -36,7 +40,6 @@ func TestSearchResults(t *testing.T) {
 	if !reflect.DeepEqual(card, expected) {
 		t.Errorf("Cards did not match: Got: \n%+v\ninstead of\n%+v", card, expected)
 	}
-
 }
 
 func loadCard(id int) (Card, error) {
