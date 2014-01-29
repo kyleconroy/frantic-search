@@ -1,14 +1,16 @@
 {
-  "id": "55f090686d433b9f61cdbacc4a741375",
+  "id": "9e56b6fd40a945560b2e4eaa784df387",
   "name": "Deliver",
   "mana_cost": "{2}{U}",
   "converted_cost": 3,
   "types": ["instant"],
   "subtypes": [],
   "special": "split",
-  "partner_card": "f5e531e3638cf8a722a9cd26831e108f",
+  "partner_card": "aa1e594325310c9780f619f480e76c80",
   "rules_text": ["Return target permanent to its owner's hand."],
   "editions": [{
+    "multiverse_id": 20573
+  },{
     "rarity": "uncommon",
     "number": "292a",
     "multiverse_id": 20574,

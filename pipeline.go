@@ -259,9 +259,9 @@ func main() {
 
 	box, err := loadDeckBox(path)
 
-    if err != nil {
-            log.Fatal(err)
-            }
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	cardChannel := make(chan Card)
 	multiverseChannel := make(chan int, 15000)

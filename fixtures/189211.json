@@ -1,6 +1,6 @@
 {
   "mana_cost": "{5}{U}",
-  "id": "7e735211b6872b7dd7844db738955be5",
+  "id": "438b68847d73ec842a5767235fdd7f90",
   "name": "Æthersnipe",
   "converted_cost": 6,
   "types": ["creature"],
@@ -12,11 +12,17 @@
   "power": "4",
   "toughness": "4",
   "editions": [{
+    "multiverse_id": 145817
+  }, {
     "multiverse_id": 189211,
     "rarity": "common",
     "set": "Duel Decks: Jace vs. Chandra",
     "artist": "Zoltan Boros & Gabor Szikszai",
     "flavor_text": [],
     "number": "17"
+  }, {
+    "multiverse_id": 247295
+  }, {
+    "multiverse_id": 370430
   }]
 }

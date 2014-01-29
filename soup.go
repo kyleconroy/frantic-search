@@ -35,6 +35,16 @@ func Attr(n *html.Node, key string) string {
 	return ""
 }
 
+func SplitTrimSpace(source, pattern string) []string {
+	result := []string{}
+
+	for _, val := range strings.Split(strings.TrimSpace(source), pattern) {
+		result = append(result, strings.TrimSpace(val))
+	}
+
+	return result
+}
+
 func queryall(n *html.Node, selectors []string) []*html.Node {
 	nodes := []*html.Node{}
 

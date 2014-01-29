@@ -8,6 +8,7 @@ import (
 	"math"
 	"net/http"
 	"net/url"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -40,10 +41,10 @@ type Card struct {
 }
 
 type Edition struct {
-	Set          string   `json:"set"`
+	Set          string   `json:"set,omitempty"`
 	Watermark    string   `json:"watermark,omitempty"`
-	Rarity       string   `json:"rarity"`
-	Artist       string   `json:"artist"`
+	Rarity       string   `json:"rarity,omitempty"`
+	Artist       string   `json:"artist,omitempty"`
 	MultiverseId int      `json:"multiverse_id"`
 	FlavorText   []string `json:"flavor_text,omitempty"`
 	Number       string   `json:"number,omitempty"`
@@ -51,10 +52,6 @@ type Edition struct {
 
 func (c Card) ImageURl() string {
 	return "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid="
-}
-
-func cardName(n *html.Node) string {
-	return ""
 }
 
 func extractString(n *html.Node, pattern string) string {
@@ -174,16 +171,6 @@ func extractPT(n *html.Node, prefix string) (string, string) {
 	}
 
 	return strings.TrimSpace(values[0]), strings.TrimSpace(values[1])
-}
-
-func SplitTrimSpace(source, pattern string) []string {
-	result := []string{}
-
-	for _, val := range strings.Split(strings.TrimSpace(source), pattern) {
-		result = append(result, strings.TrimSpace(val))
-	}
-
-	return result
 }
 
 func extractTypes(n *html.Node, prefix string) ([]string, []string) {
@@ -308,6 +295,40 @@ func extractResultSize(n *html.Node) int {
 	return count
 }
 
+func extractMultiverseIds(n *html.Node, id int, pattern string) []int {
+	ids := []int{}
+    found := false
+
+	for _, a := range FindAll(n, pattern) {
+
+		u, err := url.Parse(Attr(a, "href"))
+
+		if err != nil {
+			continue
+		}
+
+		mid := u.Query().Get("multiverseid")
+		multiverseid, err := strconv.Atoi(mid)
+
+		if err != nil {
+			continue
+		}
+
+        if multiverseid == id {
+                found = true
+        }
+
+		ids = append(ids, multiverseid)
+	}
+
+    if !found {
+		ids = append(ids, id)
+}
+
+	sort.Ints(ids)
+	return ids
+}
+
 func hash(in string) string {
 	h := md5.New()
 	io.WriteString(h, in)
@@ -317,8 +338,8 @@ func hash(in string) string {
 func parseCard(doc *html.Node, prefix string) Card {
 	card := Card{}
 	card.Name = extractString(doc, prefix+"nameRow .value")
-	card.Id = hash(card.Name)
 	card.ManaCost = extractManaCost(doc, prefix)
+	card.Id = hash(card.Name + card.ManaCost)
 	card.ConvertedCost = extractInt(doc, prefix+"cmcRow .value")
 	card.RulesText = extractText(doc, prefix+"textRow .value .cardtextbox")
 	card.Loyalty = extractInt(doc, prefix+"ptRow .value")
@@ -335,7 +356,17 @@ func parseCard(doc *html.Node, prefix string) Card {
 	edition.Watermark = extractString(doc, prefix+"markRow .value")
 	edition.MultiverseId = extractId(doc, prefix+"cardImage")
 
-	card.Editions = append(card.Editions, edition)
+	// Gross?
+	ids := extractMultiverseIds(doc, edition.MultiverseId, prefix+"otherSetsValue a")
+
+		for _, id := range ids {
+			if edition.MultiverseId == id {
+				card.Editions = append(card.Editions, edition)
+			} else {
+				card.Editions = append(card.Editions, Edition{MultiverseId: id})
+			}
+		}
+
 	return card
 }
 
@@ -353,7 +384,7 @@ func FetchCards(multiverseId int) ([]Card, error) {
 		return []Card{}, err
 	}
 
-    return cards, nil
+	return cards, nil
 }
 
 func ParseCards(page io.Reader, multiverseid int) ([]Card, error) {
@@ -401,7 +432,7 @@ type SearchResult struct {
 }
 
 func TotalPages() int {
-        _, total, err := FetchSearch(0)
+	_, total, err := FetchSearch(0)
 
 	if err != nil {
 		return 0

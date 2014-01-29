@@ -5,7 +5,7 @@
   "color_indicator": ["red", "green"],
   "subtypes": ["werewolf"],
   "special": "double-faced",
-  "partner_card": "60ba7068dee08cb8ab401f1207f9831a",
+  "partner_card": "61779aff26060b35c2acc3ae31c9e904",
   "rules_text": [
     "Trample",
     "Whenever this creature transforms into Ravager of the Fells, it deals 2 damage to target opponent and 2 damage to up to one target creature that player controls.",
