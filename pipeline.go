@@ -87,8 +87,8 @@ func (d *Deckbox) Add(newCard Card) error {
 				found := false
 				for j, olde := range c.Editions {
 					if olde.MultiverseId == newe.MultiverseId {
+						found = true
 						if olde.Set == "" && newe.Set != "" {
-							found = true
 							d.Cards[i].Editions[j] = newe
 						}
 					}
@@ -229,15 +229,20 @@ func processCards(multiverseChan chan int, cardChan chan Card) {
 
 // One go rotine pulls cards off the channel, adds them to the database
 // And flushes it to memory
-func saveCards(path string, box Deckbox, cardChan chan Card) {
+func saveCards(path string, box *Deckbox, cardChan chan Card) {
 	count := 0
 	for {
 		card, ok := <-cardChan
 
 		if !ok {
 			log.Printf("FINISHED")
-			sort.Sort(&box)
-			box.Flush(path)
+			sort.Sort(box)
+			err := box.Flush(path)
+
+			if err != nil {
+				log.Fatal(err)
+			}
+
 			return
 		}
 
@@ -265,14 +270,18 @@ func saveCards(path string, box Deckbox, cardChan chan Card) {
 
 func findEmptyEditions(box *Deckbox, multiverseChan chan int) {
 	log.Printf("%d", len(box.Cards))
+	count := 0
 	for _, card := range box.Cards {
-		log.Printf("%s", card.Name)
 		for _, edition := range card.Editions {
 			if edition.Set == "" {
+				count += 1
 				multiverseChan <- edition.MultiverseId
 			}
 		}
 	}
+
+	log.Printf("Found %d editions that need to be fetched", count)
+
 	close(multiverseChan)
 }
 
@@ -348,10 +357,10 @@ func main() {
 	// Fetch all the cards
 	go processSearchResults(box.IdSet(), pageChannel, multiverseCardChannel)
 	go processCards(multiverseCardChannel, cardChannel)
-	saveCards(path, box, cardChannel)
+	saveCards(path, &box, cardChannel)
 
 	// Fetch all the editions
 	go findEmptyEditions(&box, multiverseEditionChannel)
 	go processEditions(multiverseEditionChannel, editionChannel)
-	saveCards(path, box, editionChannel)
+	saveCards(path, &box, editionChannel)
 }
