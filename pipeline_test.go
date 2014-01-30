@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+    "os"
 	"io/ioutil"
 	"testing"
 )
@@ -54,6 +55,7 @@ func TestDeckboxAdd(t *testing.T) {
 
 func TestDeckboxJSON(t *testing.T) {
 	path := "fixtures/testbox.json"
+        defer os.Remove(path)
 	box := Deckbox{Cards: []Card{Card{Id: "FOO"}}}
 	err := box.Flush(path)
 
