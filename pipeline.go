@@ -9,13 +9,19 @@ import (
 	"runtime"
 	"sort"
 	"sync"
+	"time"
 )
 
 type Deckbox struct {
-	Cards []Card `json:"cards"`
+	Cards []Card
 }
 
-func (d *Deckbox) Sort() {
+func (d *Deckbox) UnmarshalJSON(blob []byte) error {
+	return json.Unmarshal(blob, &d.Cards)
+}
+
+func (d *Deckbox) MarshalJSON() ([]byte, error) {
+	return json.Marshal(d.Cards)
 }
 
 func (d *Deckbox) Len() int {
@@ -70,27 +76,33 @@ func (d *Deckbox) MultiverseSet() map[int]bool {
 }
 
 // Add a card to the deckbox
-func (d *Deckbox) Add(card Card) error {
-	if len(card.Editions) == 0 {
-		return fmt.Errorf("%s has no editions", card.Name)
+func (d *Deckbox) Add(newCard Card) error {
+	if len(newCard.Editions) == 0 {
+		return fmt.Errorf("%s has no editions", newCard.Name)
 	}
 
 	for i, c := range d.Cards {
-		if c.Id == card.Id {
-			edition := card.Editions[0]
+		if c.Id == newCard.Id {
+			for _, newe := range newCard.Editions {
+				found := false
+				for j, olde := range c.Editions {
+					if olde.MultiverseId == newe.MultiverseId {
+						if olde.Set == "" && newe.Set != "" {
+							found = true
+							d.Cards[i].Editions[j] = newe
+						}
+					}
+				}
 
-			for _, e := range c.Editions {
-				if e.MultiverseId == edition.MultiverseId {
-					return nil
+				if !found {
+					d.Cards[i].Editions = append(newCard.Editions, newe)
 				}
 			}
-
-			d.Cards[i].Editions = append(card.Editions, edition)
 			return nil
 		}
 	}
 
-	d.Cards = append(d.Cards, card)
+	d.Cards = append(d.Cards, newCard)
 	return nil
 }
 
@@ -98,8 +110,8 @@ func loadDeckBox(path string) (Deckbox, error) {
 	blob, err := ioutil.ReadFile(path)
 
 	if err != nil {
-		log.Println("WARNING: Couldn't open %s, creating new deckbox")
-		blob = []byte(`{"cards": []}`)
+		log.Printf("WARNING: Couldn't open %s, creating new deckbox", path)
+		blob = []byte(`[]`)
 	}
 
 	var box Deckbox
@@ -133,7 +145,7 @@ func processSearchResults(seenCards map[string]bool, pageChan chan int, multiver
 
 	for j := 0; j < 20; j++ {
 		fetchGroup.Add(1)
-		go func() {
+		go func(page int) {
 			defer fetchGroup.Done()
 
 			for {
@@ -143,7 +155,7 @@ func processSearchResults(seenCards map[string]bool, pageChan chan int, multiver
 					return
 				}
 
-				results, _, err := FetchSearch(0)
+				results, _, err := FetchSearch(page)
 
 				if err != nil {
 					log.Fatal(err)
@@ -161,11 +173,12 @@ func processSearchResults(seenCards map[string]bool, pageChan chan int, multiver
 
 				log.Printf("Found %d total cards on page %d, %d new", len(results), page, toProcess)
 			}
-		}()
+		}(j)
 	}
 
 	go func() {
 		fetchGroup.Wait()
+		log.Printf("Close multiverse ID Channel")
 		close(multiverseChan)
 	}()
 }
@@ -238,7 +251,7 @@ func saveCards(path string, box Deckbox, cardChan chan Card) {
 		count += 1
 
 		if count >= 1000 {
-			log.Printf("Added 100 cards to the database")
+			log.Printf("Added 1000 cards to the database")
 
 			err := box.Flush(path)
 
@@ -250,13 +263,67 @@ func saveCards(path string, box Deckbox, cardChan chan Card) {
 	}
 }
 
-func findEmptyEditions(box Deckbox, multiverseChan chan int) {
+func findEmptyEditions(box *Deckbox, multiverseChan chan int) {
+	log.Printf("%d", len(box.Cards))
+	for _, card := range box.Cards {
+		log.Printf("%s", card.Name)
+		for _, edition := range card.Editions {
+			if edition.Set == "" {
+				multiverseChan <- edition.MultiverseId
+			}
+		}
+	}
+	close(multiverseChan)
 }
 
-func processEditions(multiverseChan chan int, editionChan chan Edition) {
+func processEditions(multiverseChan chan int, cardChan chan Card) {
+	// Start N go routines to go fetch and parse cards
+	var parseGroup sync.WaitGroup
+
+	log.Printf("Processing editions with concurrency of 50")
+
+	for j := 0; j < 50; j++ {
+		parseGroup.Add(1)
+		go func() {
+			defer parseGroup.Done()
+
+			for {
+				id, ok := <-multiverseChan
+
+				if !ok {
+					return
+				}
+
+				cards, err := FetchCards(id)
+
+				if err != nil {
+					log.Printf("ERROR Couldn't parse %d: %s", id, err)
+					continue
+				}
+
+				for _, card := range cards {
+
+					if card.Name == "" {
+						log.Printf("ERROR No name found for %d", id)
+						continue
+					}
+
+					cardChan <- card
+				}
+			}
+		}()
+	}
+
+	go func() {
+		parseGroup.Wait()
+		close(cardChan)
+	}()
 }
 
-func saveEditions(path string, box Deckbox, editionChan chan Edition) {
+func saveEditions(path string, box Deckbox, editionChan chan Card) {
+	for {
+		time.Sleep(1000)
+	}
 }
 
 func main() {
@@ -273,18 +340,18 @@ func main() {
 	}
 
 	cardChannel := make(chan Card)
-	editionChannel := make(chan Edition)
+	editionChannel := make(chan Card)
 	multiverseCardChannel := make(chan int, 15000)
 	multiverseEditionChannel := make(chan int, 15000)
 	pageChannel := make(chan int, 200)
 
 	// Fetch all the cards
-	go processSearchResults(box.IdSet(), pageChannel, multiverseEditionChannel)
+	go processSearchResults(box.IdSet(), pageChannel, multiverseCardChannel)
 	go processCards(multiverseCardChannel, cardChannel)
 	saveCards(path, box, cardChannel)
 
 	// Fetch all the editions
-	go findEmptyEditions(box, multiverseEditionChannel)
+	go findEmptyEditions(&box, multiverseEditionChannel)
 	go processEditions(multiverseEditionChannel, editionChannel)
-	saveEditions(path, box, editionChannel)
+	saveCards(path, box, editionChannel)
 }

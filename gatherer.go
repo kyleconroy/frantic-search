@@ -441,7 +441,7 @@ func TotalPages() int {
 }
 
 func FetchSearch(page int) ([]SearchResult, int, error) {
-	url := fmt.Sprintf(searchUrl, 0)
+	url := fmt.Sprintf(searchUrl, page)
 
 	resp, err := http.Get(url)
 
